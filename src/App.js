@@ -2,18 +2,19 @@ import Basicinfo from "./components/Basicinfo";
 function App() {
   return (
     <div style={container}>
-      <Basicinfo/>
+      <Basicinfo />
     </div>
   );
 }
 
 const container = {
-  backgroundColor: 'grey',
-  display:'flex',
-  // alignItems: 'center',
-  justifyContent: 'center',
-  minHeight: '100vh',
-  width: '100%',
-}
+  backgroundColor: "grey",
+  margin: "0",
+  padding: "0",
+  boxSizing: "border-box",
+  minHeight: "100vh",
+  width: "100%",
+  fontFamily: "sans-serif",
+};
 
 export default App;

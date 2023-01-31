@@ -463,7 +463,9 @@ const Basicinfo = () => {
             </label>
             <br />
             <label style={entry}>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Quantity:
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <br />
+              Quantity:
               <input
                 style={entry}
                 type="text"
@@ -500,7 +502,9 @@ const Basicinfo = () => {
             </label>
             <br />
             <label style={entry}>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Quantity:
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <br />
+              Quantity:
               <input
                 style={entry}
                 type="text"
@@ -1442,24 +1446,18 @@ const Basicinfo = () => {
 };
 
 const container = {
-  display: "flex",
-  flexDirection: "column",
-  paddingRight: "5%",
-  paddingLeft: "5%",
-  // alignItems: 'center',
-  // justifyContent: 'center',
   width: "100%",
 };
 
 const header = {
   display: "flex",
-  paddingTop: "1%",
-  paddingBottom: "1%",
-  paddingLeft: "3%",
-  paddingRight: "8%",
-  // alignItems: 'center',
+  width: "80%",
+  marginInline: "auto",
+  padding: "2rem 0",
   justifyContent: "space-between",
   borderBottom: "4px solid black",
+  textTransform: "uppercase",
+  letterSpacing: "3px",
 };
 
 const imgstyle = {
@@ -1468,48 +1466,45 @@ const imgstyle = {
 };
 
 const entry = {
-  marginLeft: "1%",
-  marginRight: "3.75%",
-  marginTop: "1%",
-  marginBottom: "1%",
-  padding: "0.25%",
-  verticalAlign: "middle",
+  display: "flex",
+  flexDirection: "column",
+  width: "20rem",
+  margin: ".25rem 0 0 0",
+  padding: ".25rem 0 ",
+  textAlign: "center",
+  marginInline: "auto",
 };
 
 const tablestyle = {
-  padding: "1.5%",
-  verticalAlign: "middle",
   textAlign: "center",
   borderSpacing: "1px",
-  maxHeight: "200px",
+  margin: "1rem 0 0",
+  marginInline: "auto",
 };
 
 const precaltable = {
-  padding: "1.5%",
-  verticalAlign: "middle",
   textAlign: "center",
-  borderSpacing: "1px",
-  maxHeight: "200px",
-  display: "inline-block",
-  marginLeft: "10.5%",
+  margin: "1rem",
+  marginInline: "auto",
 };
 
-const rowstyle = {
-  border: "2px solid black",
-};
+const rowstyle = {};
 
 const tableinput = {
-  height: "20px",
+  height: "1.5rem",
+  width: "3rem",
   textAlign: "center",
 };
 
 const buttonstyle = {
-  border: "3px solid green",
-  margin: "2%",
-  padding: "0.5%",
-  height: "40px",
-  width: "70px",
+  border: "2px solid black",
+  borderRadius: "100vw",
+  margin: "2rem 0 0 0",
+  padding: "1rem 3rem",
+  textTransform: "uppercase",
+  fontWeight: "Bold",
+  marginInline: "auto",
+  letterSpacing: "2px",
 };
 
 export default Basicinfo;
-var a = 0;
