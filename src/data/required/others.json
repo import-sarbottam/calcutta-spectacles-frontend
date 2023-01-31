@@ -1,0 +1,86 @@
+[
+ {
+  "code": "1001",
+  "itemname": "OPTI FREE PURE MOIST 300 ml",
+  "rate": 575,
+  "opening": 3
+ },
+ {
+  "code": "1002",
+  "itemname": "OPTI FREE PURE MOIST 120 ml",
+  "rate": 285,
+  "opening": 3
+ },
+ {
+  "code": "1003",
+  "itemname": "OPTI FREE REPLENISH 300 ml",
+  "rate": 425,
+  "opening": 3
+ },
+ {
+  "code": "1004",
+  "itemname": "OPTI FREE REPLENISH 120 ml",
+  "rate": 215,
+  "opening": 3
+ },
+ {
+  "code": "1005",
+  "itemname": "GP ADVANCE 120 ml",
+  "rate": 160,
+  "opening": 3
+ },
+ {
+  "code": "1006",
+  "itemname": "AQUA SOFT 720 ml",
+  "rate": 435,
+  "opening": 3
+ },
+ {
+  "code": "1007",
+  "itemname": "BIO TRUE 60 ml",
+  "rate": 145,
+  "opening": 0
+ },
+ {
+  "code": "1008",
+  "itemname": "RENU 120 ml",
+  "rate": 240,
+  "opening": 1
+ },
+ {
+  "code": "1009",
+  "itemname": "RENU 60 ml",
+  "rate": 130,
+  "opening": 3
+ },
+ {
+  "code": "1010",
+  "itemname": "RENU 355 ml",
+  "rate": 450,
+  "opening": 4
+ },
+ {
+  "code": "1011",
+  "itemname": "BIO TRUE 300 ml",
+  "rate": 560,
+  "opening": 12
+ },
+ {
+  "code": "1012",
+  "itemname": "BIO TRUE 120 ml",
+  "rate": 305,
+  "opening": 11
+ },
+ {
+  "code": "1013",
+  "itemname": "RENU 500 ml",
+  "rate": 450,
+  "opening": 3
+ },
+ {
+  "code": "1014",
+  "itemname": "ALL IN ONE LIGHT 250 ml",
+  "rate": 360,
+  "opening": 0
+ }
+]
