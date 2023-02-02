@@ -9,9 +9,7 @@ function App() {
 
 const container = {
   backgroundColor: "grey",
-  margin: "0",
-  padding: "0",
-  boxSizing: "border-box",
+  display: 'flex',
   minHeight: "100vh",
   width: "100%",
   fontFamily: "sans-serif",

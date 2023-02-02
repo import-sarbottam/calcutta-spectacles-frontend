@@ -1,9 +1,8 @@
-import { isMobile } from "react-device-detect";
 import BasicinfoMobile from "./BasicinfoMobile";
 import BasicinfoPC from "./BasicinfoPC";
 
 const Basicinfo = () => {
-  if (isMobile) {
+  if (window.innerWidth<=430) {
     return <BasicinfoMobile />;
   } else {
     return <BasicinfoPC />;
