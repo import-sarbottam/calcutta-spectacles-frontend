@@ -29,7 +29,7 @@ const BasicinfoMobile = () => {
     <img style={imgstyle} src={plus} alt="plus" />
   );
   const [framecode, setFramecode] = useState("");
-  const [framequant, setFramequant] = useState("");
+  const [userphoto, setUserphoto] = useState(null);
   const [selectother, setSelectother] = useState();
   const [selectframe, setSelectframe] = useState();
   const [othercode, setOthercode] = useState("");
@@ -462,18 +462,37 @@ const BasicinfoMobile = () => {
               </select>
             </label>
             <br />
-            <label style={entry}>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <br />
-              Quantity:
-              <input
-                style={entry}
-                type="text"
-                size="8"
-                value={framequant}
-                onChange={(e) => setFramequant(e.target.value)}
-              />
-            </label>
+
+            {userphoto && (
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                <img
+                  style={pic2}
+                  alt="not fount"
+                  height={"350px"}
+                  width={"250px"}
+                  src={URL.createObjectURL(userphoto)}
+                />
+                <br />
+                <button style={buttonstyle} onClick={() => setUserphoto(null)}>
+                  Remove
+                </button>
+              </div>
+            )}
+
+            <input
+              style={entry}
+              type="file"
+              name="myImage"
+              onChange={(event) => {
+                setUserphoto(event.target.files[0]);
+              }}
+            />
           </form>
           <form>
             <p style={{ display: "flex", justifyContent: "center" }}>
@@ -1334,7 +1353,13 @@ const BasicinfoMobile = () => {
             ) : (
               <></>
             )}
-            <div style={{ display: "flex", justifyContent: "center" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                flexWrap: "wrap",
+              }}
+            >
               <select
                 style={entry}
                 value={purchasetype}
@@ -1498,13 +1523,16 @@ const tableinput = {
 
 const buttonstyle = {
   border: "2px solid black",
-  borderRadius: "100vw",
   margin: "2rem 0 0 0",
-  padding: "1rem 3rem",
+  padding: ".5rem 1.5rem",
   textTransform: "uppercase",
   fontWeight: "Bold",
   marginInline: "auto",
   letterSpacing: "2px",
 };
 
+const pic2 = {
+  objectFit: "cover",
+  objectPosition: "center top",
+};
 export default BasicinfoMobile;
