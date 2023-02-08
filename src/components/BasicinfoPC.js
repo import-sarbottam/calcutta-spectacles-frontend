@@ -1376,8 +1376,7 @@ const BasicinfoPC = () => {
                 <option value="Including Tax">Including Tax</option>
               </select>
               <button style={buttonstyle} onClick={(e) => handleAmt(e)}>
-                {" "}
-                Submit{" "}
+                Calculate
               </button>
             </div>
           </form>
@@ -1504,7 +1503,7 @@ const imgstyle = {
 
 const entry = {
   marginLeft: "1%",
-  marginRight: "3.75%",
+  marginRight: "2%",
   marginTop: "1%",
   marginBottom: "1%",
   padding: "0.25%",
@@ -1543,7 +1542,7 @@ const buttonstyle = {
   margin: "2%",
   padding: ".5rem 1.5rem",
   height: "40px",
-  width: "70px",
+  width: "100px",
 };
 
 const pic = {

@@ -1,12 +1,19 @@
+import { Routes, Route } from "react-router-dom";
 import Basicinfo from "./components/Basicinfo";
 import Frameinfo from "./components/Frameinfo";
 
 function App() {
   return (
-    // <div style={container}>
-    //   <Basicinfo />
-    // </div>
-    <Frameinfo />
+    <>
+      <Routes>
+          <Route path="/" element={<Basicinfo/>} />
+          <Route path="/frame" element={<Frameinfo/>} />
+      </Routes>
+    </>
+    // // <div style={container}>
+    // //   <Basicinfo />
+    // // </div>
+    // <Frameinfo />
   );
 }
 
