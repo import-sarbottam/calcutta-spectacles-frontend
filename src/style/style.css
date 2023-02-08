@@ -44,6 +44,13 @@ body {
   flex-direction: column;
   gap: 2rem;
   text-transform: uppercase;
+  align-items: flex-start;
+}
+.enter-frame .fdetails .button-edit {
+  margin-inline: auto;
+}
+.enter-frame .mrp1 > input {
+  margin-left: 4rem;
 }
 .enter-frame input {
   height: 2rem;
