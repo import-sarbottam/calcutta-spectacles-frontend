@@ -18,7 +18,7 @@ function Frameinfo() {
 
   async function handleDelete(id) {
     axios
-      .delete(`http://192.168.0.102:8000/api/deleteframe/${id}`)
+      .delete(`http://192.168.0.169:8000/api/deleteframe/${id}`)
       .then((res) => {
         setCount(count - 1);
       })
@@ -36,7 +36,7 @@ function Frameinfo() {
         style={pic2}
         width={"200px"}
         height={"100px"}
-        src={`http://192.168.0.102:8000/media/${arr.frame_pic}`}
+        src={`http://192.168.0.169:8000/media/${arr.frame_pic}`}
         alt=""
       />
     );
@@ -49,7 +49,7 @@ function Frameinfo() {
   async function handleUpdateAPI(e) {
     await axios
       .put(
-        `http://192.168.0.102:8000/api/updateframe/${updateid}`,
+        `http://192.168.0.169:8000/api/updateframe/${updateid}`,
         {
           frame_code: framecode,
           frame_name: framename,
@@ -81,15 +81,15 @@ function Frameinfo() {
   useEffect(() => {
     async function setFrame() {
       let rendertemp = [];
-      let res = await axios.get("http://192.168.0.102:8000/api/getframe/");
+      let res = await axios.get("http://192.168.0.169:8000/api/getframe/");
       for (let i = 0; i < res.data.length; i++) {
         rendertemp.push(
-          <tr>
+          <tr key={res.data[i].frame_code}>
             <td>{res.data[i].frame_code}</td>
             <td>{res.data[i].frame_name}</td>
             <td>
               <img
-                src={`http://192.168.0.102:8000/media/${res.data[i].frame_pic}`}
+                src={`http://192.168.0.169:8000/media/${res.data[i].frame_pic}`}
                 alt=""
               />
             </td>
@@ -128,7 +128,7 @@ function Frameinfo() {
 
     await axios
       .post(
-        "http://192.168.0.102:8000/api/frame/",
+        "http://192.168.0.169:8000/api/frame/",
         {
           frame_code: framecode,
           frame_name: framename,
@@ -173,13 +173,33 @@ function Frameinfo() {
     setFramephotorender();
   }
 
+  function handleEntryReset(e){
+    setFramephoto();
+    setFramephotorender();
+    setFramecode("")
+    setFramename("")
+    setPrice("")
+  }
+
+  function handleEditReset(e){
+    setCount(count + 1);
+    setFramecode("");
+    setPrice("");
+    setFramename("");
+    setFramephoto();
+    setFramephotorender();
+    setUpdateid("");
+    setUpdate(false);
+    setAddframe(false);
+  }
+
   return (
     <div className="frameinfo">
       <div className="switch">
-        <button onClick={(e) => setAddframe(true)} className="ef">
+        <button onClick={() => setAddframe(true)} className="ef">
           Enter Frame
         </button>
-        <button onClick={(e) => setAddframe(false)} className="vf">
+        <button onClick={() => setAddframe(false)} className="vf">
           View Frame
         </button>
       </div>
@@ -238,13 +258,23 @@ function Frameinfo() {
             </div>
             <div className="button-edit">
               {update ? (
-                <button style={buttonstyle} onClick={(e) => handleUpdateAPI(e)}>
-                  Update
-                </button>
+                <div>
+                  <button style={buttonstyle} onClick={(e) => handleEditReset(e)}>
+                    Cancel
+                  </button>
+                  <button style={buttonstyle} onClick={(e) => handleUpdateAPI(e)}>
+                    Update
+                  </button>
+                </div>
               ) : (
-                <button style={buttonstyle} onClick={(e) => handleSubmit(e)}>
-                  Submit
-                </button>
+                <div>
+                  <button style={buttonstyle} onClick={(e) => handleEntryReset(e)}>
+                    Reset
+                  </button>
+                  <button style={buttonstyle} onClick={(e) => handleSubmit(e)}>
+                    Submit
+                  </button>
+                </div>
               )}
             </div>
           </div>
@@ -277,6 +307,7 @@ const pic2 = {
 const buttonstyle = {
   border: "2px solid black",
   padding: ".5rem 1.5rem",
+  marginRight: ".5rem",
 };
 
 const entry = {

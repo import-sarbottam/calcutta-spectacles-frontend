@@ -1,0 +1,35 @@
+.LensInfo {
+  padding: 0 3rem;
+  .lens-content {
+    padding: 0 2rem;
+    .table1 {
+      th,
+      td,
+      input {
+        text-align: center;
+      }
+      input {
+        width: 10ch;
+      }
+      th {
+        font-size: 15px;
+        // border: 1px solid black;
+      }
+      td {
+        padding: 1px;
+      }
+    }
+
+    .lens-input {
+      display: flex;
+      .lens-input-a,
+      .lens-input-b {
+        flex: 1;
+        .flex {
+          padding: 5px;
+          display: flex;
+        }
+      }
+    }
+  }
+}

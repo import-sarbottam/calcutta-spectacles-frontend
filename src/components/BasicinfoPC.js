@@ -429,6 +429,7 @@ const BasicinfoPC = () => {
       ) : (
         <></>
       )}
+
       <div style={header}>
         <h3>Frame/Other Details</h3>
         <button
@@ -461,6 +462,7 @@ const BasicinfoPC = () => {
                 style={entry}
                 value={framecode}
                 onChange={(e) => setFramecode(e.target.value)}
+                onClick={() => console.log("hello")}
               >
                 {selectframe}
               </select>
@@ -548,6 +550,7 @@ const BasicinfoPC = () => {
       ) : (
         <></>
       )}
+
       <div style={header}>
         <h3>Lens</h3>
         <button
@@ -723,6 +726,7 @@ const BasicinfoPC = () => {
                 </td>
               </tr>
             </table>
+
             <label style={entry}>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <select
@@ -738,6 +742,7 @@ const BasicinfoPC = () => {
                 <option value="Polycarbonate">Polycarbonate</option>
               </select>
             </label>
+
             <table style={precaltable}>
               <thead>
                 <tr>
@@ -780,7 +785,9 @@ const BasicinfoPC = () => {
                 </tr>
               </tbody>
             </table>
+
             <br />
+
             <label style={entry}>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Power:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <select
@@ -794,6 +801,7 @@ const BasicinfoPC = () => {
                 <option value="Bifocal Progressive">Progressive</option>
               </select>
             </label>
+
             <label style={entry}>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WRAP:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <input
@@ -804,6 +812,7 @@ const BasicinfoPC = () => {
                 onChange={(e) => setWrap(e.target.value)}
               />
             </label>
+
             <br />
             <label style={entry}>
               &nbsp;&nbsp;Anti glare:&nbsp;&nbsp;&nbsp;&nbsp;
@@ -819,6 +828,7 @@ const BasicinfoPC = () => {
                 <option value="No">No</option>
               </select>
             </label>
+
             <label style={entry}>
               Inclination (Pentoscope):&nbsp;
               <input
@@ -830,6 +840,7 @@ const BasicinfoPC = () => {
               />
             </label>
             <br />
+
             <label style={entry}>
               Bifocal Type:&nbsp;&nbsp;&nbsp;
               <select
@@ -845,6 +856,7 @@ const BasicinfoPC = () => {
                 <option value="E-Type">E-Type</option>
               </select>
             </label>
+
             <label style={entry}>
               Progression length(mm):
               <input
@@ -880,6 +892,7 @@ const BasicinfoPC = () => {
                 onChange={(e) => setRead(e.target.value)}
               />
             </label>
+
             <br />
             <label style={entry}>
               &nbsp;&nbsp;Anti Scratch:&nbsp;
@@ -895,6 +908,7 @@ const BasicinfoPC = () => {
                 <option value="No">No</option>
               </select>
             </label>
+
             <label style={entry}>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dominant
               Eye:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -949,6 +963,7 @@ const BasicinfoPC = () => {
                 <option value="ST">ST</option>
               </select>
             </label>
+
             <br />
             <label style={entry}>
               &nbsp;&nbsp;&nbsp;&nbsp;Diameter:&nbsp;&nbsp;&nbsp;&nbsp;
@@ -968,6 +983,7 @@ const BasicinfoPC = () => {
                 <option value="80/85">80/85</option>
               </select>
             </label>
+
             <label style={entry}>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Manufacturer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <input
@@ -1012,6 +1028,7 @@ const BasicinfoPC = () => {
       ) : (
         <></>
       )}
+
       <div style={header}>
         <h3>Contact Lens</h3>
         <button
@@ -1189,6 +1206,7 @@ const BasicinfoPC = () => {
       ) : (
         <></>
       )}
+
       <div style={header}>
         <h3>Price Breakup</h3>
         <button
@@ -1503,7 +1521,7 @@ const imgstyle = {
 
 const entry = {
   marginLeft: "1%",
-  marginRight: "2%",
+  marginRight: "3%",
   marginTop: "1%",
   marginBottom: "1%",
   padding: "0.25%",

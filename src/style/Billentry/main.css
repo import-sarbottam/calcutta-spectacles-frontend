@@ -1,0 +1,167 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
+  background: grey;
+  color: black;
+}
+
+.BasicInfo {
+  padding: 0 3rem;
+}
+.BasicInfo .basic-content {
+  padding: 0 2rem;
+}
+.BasicInfo .basic-content .delivery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding: 1rem 0;
+}
+.BasicInfo .basic-content .name,
+.BasicInfo .basic-content .address {
+  display: flex;
+  gap: 15px;
+  padding: 5px 0;
+}
+.BasicInfo .basic-content .name input,
+.BasicInfo .basic-content .name textarea,
+.BasicInfo .basic-content .address input,
+.BasicInfo .basic-content .address textarea {
+  width: 27.5rem;
+}
+.BasicInfo .basic-content .name textarea,
+.BasicInfo .basic-content .address textarea {
+  height: 80px;
+}
+.BasicInfo .basic-content .date {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding: 1rem 0;
+}
+.BasicInfo .basic-content .doctor-name {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding: 1rem 0;
+}
+.BasicInfo .basic-content .doctor-name input {
+  width: 27.5rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  padding: 10px;
+  border-bottom: 3px solid black;
+}
+
+button {
+  background: transparent;
+  width: 40px;
+  height: 40px;
+  outline: none;
+  border: none;
+}
+
+button > img {
+  width: 35px;
+}
+
+input,
+textarea {
+  padding: 3px;
+}
+
+label {
+  width: 12ch;
+}
+
+@media (max-width: 600px) {
+  .delivery,
+  .name,
+  .address,
+  .date,
+  .doctor-name {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .delivery input,
+  .delivery textarea,
+  .delivery label,
+  .name input,
+  .name textarea,
+  .name label,
+  .address input,
+  .address textarea,
+  .address label,
+  .date input,
+  .date textarea,
+  .date label,
+  .doctor-name input,
+  .doctor-name textarea,
+  .doctor-name label {
+    width: 100% !important;
+  }
+  .delivery label,
+  .name label,
+  .address label,
+  .date label,
+  .doctor-name label {
+    text-align: center;
+  }
+  .delivery input,
+  .name input,
+  .address input,
+  .date input,
+  .doctor-name input {
+    height: 35px;
+  }
+  .basic-content {
+    padding: 0 !important;
+  }
+}
+.LensInfo {
+  padding: 0 3rem;
+}
+.LensInfo .lens-content {
+  padding: 0 2rem;
+}
+.LensInfo .lens-content .table1 th,
+.LensInfo .lens-content .table1 td,
+.LensInfo .lens-content .table1 input {
+  text-align: center;
+}
+.LensInfo .lens-content .table1 input {
+  width: 10ch;
+}
+.LensInfo .lens-content .table1 th {
+  font-size: 15px;
+}
+.LensInfo .lens-content .table1 td {
+  padding: 1px;
+}
+.LensInfo .lens-content .lens-input {
+  display: flex;
+}
+.LensInfo .lens-content .lens-input .lens-input-a,
+.LensInfo .lens-content .lens-input .lens-input-b {
+  flex: 1;
+}
+.LensInfo .lens-content .lens-input .lens-input-a .flex,
+.LensInfo .lens-content .lens-input .lens-input-b .flex {
+  padding: 5px;
+  display: flex;
+}/*# sourceMappingURL=main.css.map */

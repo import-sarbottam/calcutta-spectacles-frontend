@@ -1,13 +1,23 @@
 import BasicinfoMobile from "./BasicinfoMobile";
 import BasicinfoPC from "./BasicinfoPC";
-import Frameinfo from "./Frameinfo";
 
 const Basicinfo = () => {
   if (window.innerWidth <= 430) {
     return <BasicinfoMobile />;
   } else {
-    return <BasicinfoPC />;
-  }
+    return (
+    <div style={container}>
+      <BasicinfoPC />
+    </div>
+  )}
+};
+
+const container = {
+  backgroundColor: "grey",
+  display: "flex",
+  minHeight: "100vh",
+  width: "100%",
+  fontFamily: "sans-serif",
 };
 
 export default Basicinfo;
