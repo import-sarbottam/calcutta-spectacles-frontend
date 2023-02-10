@@ -133,11 +133,132 @@ label {
     padding: 0 !important;
   }
 }
+.FrameInfo {
+  padding: 0 3rem;
+}
+.FrameInfo p {
+  text-align: center;
+  border-bottom: 2px dashed black;
+  padding: 1rem;
+}
+.FrameInfo .frame-content {
+  padding: 0 2rem;
+}
+.FrameInfo .frame-content .frame-input,
+.FrameInfo .frame-content .others-input {
+  display: grid;
+  place-items: center;
+  padding: 1rem 0;
+}
+.FrameInfo .frame-content .frame-input .framecode,
+.FrameInfo .frame-content .frame-input .item,
+.FrameInfo .frame-content .others-input .framecode,
+.FrameInfo .frame-content .others-input .item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.FrameInfo .frame-content .frame-input .framecode label,
+.FrameInfo .frame-content .frame-input .item label,
+.FrameInfo .frame-content .others-input .framecode label,
+.FrameInfo .frame-content .others-input .item label {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.FrameInfo .frame-content .frame-input .framecode select,
+.FrameInfo .frame-content .frame-input .item select,
+.FrameInfo .frame-content .others-input .framecode select,
+.FrameInfo .frame-content .others-input .item select {
+  height: 30px !important;
+}
+.FrameInfo .frame-content .frame-input .framecode img,
+.FrameInfo .frame-content .frame-input .item img,
+.FrameInfo .frame-content .others-input .framecode img,
+.FrameInfo .frame-content .others-input .item img {
+  width: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.FrameInfo .frame-content .frame-input .userphoto,
+.FrameInfo .frame-content .others-input .userphoto {
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.FrameInfo .frame-content .frame-input .userphoto .image,
+.FrameInfo .frame-content .others-input .userphoto .image {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.FrameInfo .frame-content .frame-input .userphoto .image img,
+.FrameInfo .frame-content .others-input .userphoto .image img {
+  height: 400px;
+  width: 250px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.FrameInfo .frame-content .frame-input .userphoto .image button,
+.FrameInfo .frame-content .others-input .userphoto .image button {
+  border: 1px solid black;
+  padding: 0.5rem 1.25rem;
+  width: -moz-fit-content;
+  width: fit-content;
+  background: white;
+  margin-inline: auto;
+}
+.FrameInfo .frame-content .frame-input .item select,
+.FrameInfo .frame-content .others-input .item select {
+  width: 270px !important;
+}
+.FrameInfo .frame-content .frame-input .quantity,
+.FrameInfo .frame-content .others-input .quantity {
+  display: flex;
+  gap: 10px;
+  padding: 1rem 0;
+}
+.FrameInfo .frame-content .frame-input .quantity label,
+.FrameInfo .frame-content .others-input .quantity label {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.FrameInfo .select-input {
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+.FrameInfo .select-input input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 90%;
+  height: 100%;
+}
+
+@media (max-width: 650px) {
+  .FrameInfo {
+    padding: 0 0.5rem !important;
+  }
+  .FrameInfo .frame-content {
+    padding: 0 0.5rem;
+  }
+  .FrameInfo .frame-content .framecode,
+  .FrameInfo .frame-content .item {
+    display: flex;
+    flex-direction: column;
+  }
+}
 .LensInfo {
   padding: 0 3rem;
 }
 .LensInfo .lens-content {
   padding: 0 2rem;
+}
+.LensInfo .lens-content .table1 {
+  overflow-x: auto;
 }
 .LensInfo .lens-content .table1 th,
 .LensInfo .lens-content .table1 td,
@@ -155,13 +276,103 @@ label {
 }
 .LensInfo .lens-content .lens-input {
   display: flex;
+  padding-top: 3rem;
 }
 .LensInfo .lens-content .lens-input .lens-input-a,
 .LensInfo .lens-content .lens-input .lens-input-b {
-  flex: 1;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 .LensInfo .lens-content .lens-input .lens-input-a .flex,
 .LensInfo .lens-content .lens-input .lens-input-b .flex {
   padding: 5px;
   display: flex;
+}
+.LensInfo .lens-content .lens-input .lens-input-a input,
+.LensInfo .lens-content .lens-input .lens-input-a textarea,
+.LensInfo .lens-content .lens-input .lens-input-a select,
+.LensInfo .lens-content .lens-input .lens-input-b input,
+.LensInfo .lens-content .lens-input .lens-input-b textarea,
+.LensInfo .lens-content .lens-input .lens-input-b select {
+  width: 20ch;
+}
+.LensInfo .lens-content .lens-input .lens-input-a label,
+.LensInfo .lens-content .lens-input .lens-input-b label {
+  width: 25ch;
+  text-align: center;
+}
+.LensInfo .lens-content .lens-input .lens-input-a textarea,
+.LensInfo .lens-content .lens-input .lens-input-b textarea {
+  height: 80px;
+}
+.LensInfo .lens-content .lens-input .lens-input-b .table2 {
+  display: flex;
+  align-items: last baseline;
+}
+.LensInfo .lens-content .lens-input .lens-input-b .table2 td > input {
+  width: 100% !important;
+}
+.LensInfo .lens-content .lens-input .lens-input-b .table2 th {
+  text-align: center !important;
+  width: 6ch !important;
+}
+.LensInfo .lens-content .lens-input .lens-input-b input,
+.LensInfo .lens-content .lens-input .lens-input-b textarea,
+.LensInfo .lens-content .lens-input .lens-input-b select {
+  width: 24ch;
+}
+.LensInfo .lens-content .lens-input .lens-input-a {
+  padding-top: 2rem;
+}
+.LensInfo .lens-content .lens-input .lens-input-a label {
+  width: 15ch;
+  text-align: center;
+}
+
+@media (max-width: 850px) {
+  .LensInfo {
+    padding: 0 0.5rem;
+  }
+  .LensInfo .lens-content {
+    padding: 0 0.5rem;
+  }
+}
+@media (max-width: 800px) {
+  .LensInfo {
+    padding: 0 1rem;
+  }
+  .lens-input {
+    flex-direction: column;
+  }
+}
+@media only screen and (max-width: 450px) {
+  .lens-input {
+    flex-direction: column !important;
+  }
+  .lens-input .lens-input-a,
+  .lens-input .lens-input-b {
+    width: 100% !important;
+  }
+  .lens-input .lens-input-a input,
+  .lens-input .lens-input-a textarea,
+  .lens-input .lens-input-a select,
+  .lens-input .lens-input-b input,
+  .lens-input .lens-input-b textarea,
+  .lens-input .lens-input-b select {
+    width: 100% !important;
+    height: 30px;
+  }
+  .lens-input .lens-input-a label,
+  .lens-input .lens-input-b label {
+    width: 100% !important;
+    text-align: center;
+  }
+  .lens-input .lens-input-a textarea,
+  .lens-input .lens-input-b textarea {
+    height: 80px !important;
+  }
+  .lens-input .flex {
+    flex-direction: column;
+    width: 100%;
+  }
 }/*# sourceMappingURL=main.css.map */

@@ -1,20 +1,27 @@
 .LensInfo {
   padding: 0 3rem;
+
   .lens-content {
     padding: 0 2rem;
+
     .table1 {
+      overflow-x: auto;
+
       th,
       td,
       input {
         text-align: center;
       }
+
       input {
         width: 10ch;
       }
+
       th {
         font-size: 15px;
         // border: 1px solid black;
       }
+
       td {
         padding: 1px;
       }
@@ -22,14 +29,120 @@
 
     .lens-input {
       display: flex;
+      padding-top: 3rem;
+
       .lens-input-a,
       .lens-input-b {
-        flex: 1;
+        // flex: 1;
+        width: fit-content;
+
         .flex {
           padding: 5px;
           display: flex;
         }
+
+        input,
+        textarea,
+        select {
+          width: 20ch;
+        }
+
+        label {
+          width: 25ch;
+          text-align: center;
+        }
+
+        textarea {
+          height: 80px;
+        }
       }
+
+      .lens-input-b {
+        .table2 {
+          // padding: 5px;
+
+          display: flex;
+          align-items: last baseline;
+
+          td>input {
+            width: 100% !important;
+
+          }
+
+          th {
+            text-align: center !important;
+            width: 6ch !important;
+          }
+        }
+
+        input,
+        textarea,
+        select {
+          width: 24ch;
+        }
+      }
+
+      .lens-input-a {
+        // background: blue;
+        padding-top: 2rem;
+
+        label {
+          width: 15ch;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width:850px) {
+  .LensInfo {
+    padding: 0 .5rem;
+
+    .lens-content {
+      padding: 0 .5rem;
+    }
+  }
+}
+
+@media (max-width:800px) {
+  .LensInfo {
+    padding: 0 1rem;
+  }
+
+  .lens-input {
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width:450px) {
+  .lens-input {
+    flex-direction: column !important;
+
+    .lens-input-a,
+    .lens-input-b {
+      width: 100% !important;
+
+      input,
+      textarea,
+      select {
+        width: 100% !important;
+        height: 30px;
+      }
+
+      label {
+        width: 100% !important;
+        text-align: center;
+      }
+
+      textarea {
+        height: 80px !important;
+      }
+    }
+
+    .flex {
+      flex-direction: column;
+      width: 100%;
     }
   }
 }
