@@ -1,11 +1,11 @@
-import React, { Fragment } from "react";
+import React from "react";
 import plus from "../img/plus.png";
 import minus from "../img/minus.png";
-import framee from "../img/1.png";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
-import frames from "../data/required/frame.json"; //get from backend later
-import others from "../data/required/others.json"; //get from backend later
+// import frames from "../data/required/frame.json"; //get from backend later
+// import others from "../data/required/others.json"; //get from backend later
 
 import "../style/Billentry/main.css";
 
@@ -28,7 +28,10 @@ const Billentry = () => {
   const [frame, setFrame] = useState(false);
   const [framelogo, setFramelogo] = useState(<img src={plus} alt="plus" />);
   const [framecode, setFramecode] = useState("");
-  const [framephoto, setFramephoto] = useState(<img src={plus} alt="plus" />);
+  const [otherdata, setOtherdata] = useState();
+  const [framedata, setFramedata] = useState();
+  const [frametyping, setFrametyping] = useState("");
+  const [othertyping, setOthertyping] = useState("");
   const [userphoto, setUserphoto] = useState(null);
   const [selectother, setSelectother] = useState();
   const [selectframe, setSelectframe] = useState();
@@ -36,6 +39,7 @@ const Billentry = () => {
   const [otherquant, setOtherquant] = useState("");
   let frameselect = [];
   let otherselect = [];
+  const [framephoto, setFramephoto] = useState();
 
   // Lens related variable
 
@@ -86,6 +90,7 @@ const Billentry = () => {
   const [type, setType] = useState("");
   const [long, setLong] = useState("");
   const [longopt, setLongopt] = useState([
+    <option value=""></option>,
     <option value={"Daily"}>Daily</option>,
     <option value={"Weekly"}>Weekly</option>,
     <option value={"Monthly"}>Monthly</option>,
@@ -157,37 +162,97 @@ const Billentry = () => {
     }
   }
 
+  function handleOtherCode(e) {
+    setOthercode(otherdata[e.target.value].other_code);
+    setOthertyping(otherdata[e.target.value].other_name);
+    setOtherprice(otherdata[e.target.value].other_price);
+  }
+
+  function handleFrameCode(e) {
+    setFramecode(framedata[e.target.value].frame_code);
+    setFrametyping(framedata[e.target.value].frame_name);
+    setFramephoto(
+      <img
+        src={`http://192.168.0.169:8000/media/${
+          framedata[e.target.value].frame_pic
+        }`}
+        alt=""
+      />
+    );
+    setFrameprice(framedata[e.target.value].frame_price);
+  }
+
+  function handleOtherquant(e) {
+    if (isNaN(parseFloat(e.target.value))) {
+      if (isNaN(parseFloat(otherquant))) {
+        setOtherprice(parseFloat(otherprice) / 1);
+      } else {
+        setOtherprice(parseFloat(otherprice) / parseFloat(otherquant));
+      }
+      setOtherquant(e.target.value);
+      return;
+    }
+    setOtherquant(e.target.value);
+    setOtherprice(parseFloat(otherprice) * parseFloat(e.target.value));
+  }
+
   useEffect(() => {
-    function setOthers() {
+    async function setOthers() {
       // eslint-disable-next-line
       otherselect = [<option key="0" value=""></option>];
-      for (let i = 0; i < others.length; i++) {
+      // for (let i = 0; i < others.length; i++) {
+      //   otherselect.push(
+      //     <option key={others[i].code} value={others[i].code}>
+      //       {others[i].itemname}
+      //     </option>
+      //   );
+      // }
+      let res = await axios.get(
+        `http://192.168.0.169:8000/api/getother/${othertyping}`
+      );
+      setOtherdata(res.data);
+      for (let i = 0; i < res.data.length; i++) {
         otherselect.push(
-          <option key={others[i].code} value={others[i].code}>
-            {others[i].itemname}
+          <option key={res.data[i].other_code} value={i}>
+            {res.data[i].other_name}
           </option>
         );
       }
       setSelectother(otherselect);
     }
-    setOthers();
+    if (othertyping) {
+      setOthers();
+    }
     // eslint-disable-next-line
-  }, []);
+  }, [othertyping]);
 
   useEffect(() => {
-    function setFrames() {
+    async function setFrames() {
       // eslint-disable-next-line
       frameselect = [<option key="0" value=""></option>];
-      for (let i = 0; i < frames.length; i++) {
+      // for (let i = 0; i < frames.length; i++) {
+      //   frameselect.push(
+      //     <option value={frames[i].shortname}>{frames[i].fullnme}</option>
+      //   );
+      // }
+      let res = await axios.get(
+        `http://192.168.0.169:8000/api/getframe/${frametyping}`
+      );
+      for (let i = 0; i < res.data.length; i++) {
         frameselect.push(
-          <option value={frames[i].shortname}>{frames[i].fullnme}</option>
+          <option key={res.data[i].frame_code} value={i}>
+            {res.data[i].frame_name}
+          </option>
         );
       }
+      setFramedata(res.data);
       setSelectframe(frameselect);
     }
-    setFrames();
+    if (frametyping) {
+      setFrames();
+    }
     // eslint-disable-next-line
-  }, []);
+  }, [frametyping]);
 
   //Lens related function
   function handleLens(e) {
@@ -218,7 +283,7 @@ const Billentry = () => {
     if (e.target.value === "White" || e.target.value === "") {
       setEnablecol(true);
       setLongopt([
-        <option value={""}></option>,
+        <option value=""></option>,
         <option value={"Daily"}>Daily</option>,
         <option value={"Weekly"}>Weekly</option>,
         <option value={"Monthly"}>Monthly</option>,
@@ -227,7 +292,7 @@ const Billentry = () => {
     } else {
       setEnablecol(false);
       setLongopt([
-        <option value={""}></option>,
+        <option value=""></option>,
         <option value={"Monthly"}>Monthly</option>,
         <option value={"Yearly"}>Yearly</option>,
       ]);
@@ -410,15 +475,17 @@ const Billentry = () => {
                     <div className="select-input">
                       <select
                         value={framecode}
-                        onChange={(e) => setFramecode(e.target.value)}
-                        onClick={() => console.log("hello")}
+                        onChange={(e) => handleFrameCode(e)}
                       >
                         {selectframe}
                       </select>
-                      <input></input>
+                      <input
+                        value={frametyping}
+                        onChange={(e) => setFrametyping(e.target.value)}
+                      />
                     </div>
 
-                    {framecode && <img alt="not found" src={framee} />}
+                    {framecode && framephoto}
                   </div>
 
                   <div className="userphoto">
@@ -455,11 +522,14 @@ const Billentry = () => {
                     <div className="select-input">
                       <select
                         value={othercode}
-                        onChange={(e) => setOthercode(e.target.value)}
+                        onChange={(e) => handleOtherCode(e)}
                       >
                         {selectother}
                       </select>
-                      <input></input>
+                      <input
+                        value={othertyping}
+                        onChange={(e) => setOthertyping(e.target.value)}
+                      />
                     </div>
                   </div>
                   <div className="quantity">
@@ -468,7 +538,7 @@ const Billentry = () => {
                       type="text"
                       size="8"
                       value={otherquant}
-                      onChange={(e) => setOtherquant(e.target.value)}
+                      onChange={(e) => handleOtherquant(e)}
                     />
                   </div>
                 </div>
