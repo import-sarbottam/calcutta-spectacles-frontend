@@ -1,24 +1,30 @@
 .BasicInfo {
   padding: 0 3rem;
+
   .basic-content {
     padding: 0 2rem;
+
     .delivery {
       display: flex;
       flex-wrap: wrap;
       gap: 15px;
       padding: 1rem 0;
     }
+
     .name,
     .address {
       display: flex;
       gap: 15px;
+
       input,
       textarea {
         width: 27.5rem;
       }
+
       textarea {
         height: 80px;
       }
+
       padding: 5px 0;
     }
 
@@ -34,6 +40,7 @@
       flex-wrap: wrap;
       gap: 15px;
       padding: 1rem 0;
+
       input {
         width: 27.5rem;
       }
@@ -57,7 +64,8 @@ button {
   outline: none;
   border: none;
 }
-button > img {
+
+button>img {
   width: 35px;
 }
 
@@ -65,12 +73,14 @@ input,
 textarea {
   padding: 3px;
 }
+
 label {
   width: 12ch;
   // text-align: center;
 }
 
 @media (max-width: 600px) {
+
   .delivery,
   .name,
   .address,
@@ -80,19 +90,33 @@ label {
     display: flex;
     flex-direction: column;
     width: 100%;
+
     input,
     textarea,
     label {
       width: 100% !important;
     }
+
     label {
       text-align: center;
     }
+
     input {
       height: 35px;
     }
   }
+
   .basic-content {
     padding: 0 !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .BasicInfo {
+    padding: 0 .5rem;
+
+    .basic-content {
+      padding: 0;
+    }
   }
 }

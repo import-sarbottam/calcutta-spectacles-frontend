@@ -30,6 +30,7 @@
     .lens-input {
       display: flex;
       padding-top: 3rem;
+      overflow-x: auto;
 
       .lens-input-a,
       .lens-input-b {
@@ -95,19 +96,19 @@
   }
 }
 
-@media (max-width:850px) {
+// @media (max-width:850px) {
+//   .LensInfo {
+//     padding: 0 .5rem;
+
+//     .lens-content {
+//       padding: 0 .5rem;
+//     }
+//   }
+// }
+
+@media (max-width:765px) {
   .LensInfo {
     padding: 0 .5rem;
-
-    .lens-content {
-      padding: 0 .5rem;
-    }
-  }
-}
-
-@media (max-width:800px) {
-  .LensInfo {
-    padding: 0 1rem;
   }
 
   .lens-input {

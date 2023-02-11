@@ -14,6 +14,10 @@ body {
   color: black;
 }
 
+h1 {
+  font-size: medium;
+}
+
 .BasicInfo {
   padding: 0 3rem;
 }
@@ -131,6 +135,14 @@ label {
   }
   .basic-content {
     padding: 0 !important;
+  }
+}
+@media (max-width: 600px) {
+  .BasicInfo {
+    padding: 0 0.5rem;
+  }
+  .BasicInfo .basic-content {
+    padding: 0;
   }
 }
 .FrameInfo {
@@ -277,6 +289,7 @@ label {
 .LensInfo .lens-content .lens-input {
   display: flex;
   padding-top: 3rem;
+  overflow-x: auto;
 }
 .LensInfo .lens-content .lens-input .lens-input-a,
 .LensInfo .lens-content .lens-input .lens-input-b {
@@ -329,17 +342,9 @@ label {
   text-align: center;
 }
 
-@media (max-width: 850px) {
+@media (max-width: 765px) {
   .LensInfo {
     padding: 0 0.5rem;
-  }
-  .LensInfo .lens-content {
-    padding: 0 0.5rem;
-  }
-}
-@media (max-width: 800px) {
-  .LensInfo {
-    padding: 0 1rem;
   }
   .lens-input {
     flex-direction: column;
@@ -374,5 +379,185 @@ label {
   .lens-input .flex {
     flex-direction: column;
     width: 100%;
+  }
+}
+.ContactLensInfo {
+  padding: 0 3rem;
+}
+.ContactLensInfo .contactlens-content {
+  padding: 0 2rem;
+}
+.ContactLensInfo .contactlens-content .row {
+  display: flex;
+  gap: 20px;
+  padding: 1rem 0;
+}
+.ContactLensInfo .contactlens-content .row .type,
+.ContactLensInfo .contactlens-content .row .longitivity,
+.ContactLensInfo .contactlens-content .row .color {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.ContactLensInfo .contactlens-content .row .type > label,
+.ContactLensInfo .contactlens-content .row .longitivity > label,
+.ContactLensInfo .contactlens-content .row .color > label,
+.ContactLensInfo .contactlens-content .row .type > select,
+.ContactLensInfo .contactlens-content .row .longitivity > select,
+.ContactLensInfo .contactlens-content .row .color > input {
+  padding: 0 5px;
+}
+.ContactLensInfo .contactlens-content .row .color > input {
+  width: 100px;
+}
+.ContactLensInfo .contactlens-content .table3 {
+  padding: 1rem 0;
+}
+.ContactLensInfo .contactlens-content .table3 th,
+.ContactLensInfo .contactlens-content .table3 td,
+.ContactLensInfo .contactlens-content .table3 input {
+  text-align: center;
+}
+.ContactLensInfo .contactlens-content .table3 input {
+  width: 10ch;
+}
+.ContactLensInfo .contactlens-content .table3 th {
+  font-size: 13.5px;
+}
+.ContactLensInfo .contactlens-content .table3 td {
+  padding: 1px;
+}
+.ContactLensInfo .contactlens-content .manufacturer,
+.ContactLensInfo .contactlens-content .remarks {
+  padding: 0.7rem 0;
+  display: flex;
+  align-items: center;
+}
+.ContactLensInfo .contactlens-content .manufacturer label,
+.ContactLensInfo .contactlens-content .remarks label {
+  width: 13ch;
+}
+.ContactLensInfo .contactlens-content .manufacturer input,
+.ContactLensInfo .contactlens-content .manufacturer textarea,
+.ContactLensInfo .contactlens-content .remarks input,
+.ContactLensInfo .contactlens-content .remarks textarea {
+  width: 280px !important;
+}
+.ContactLensInfo .contactlens-content .manufacturer textarea,
+.ContactLensInfo .contactlens-content .remarks textarea {
+  height: 80px;
+}
+
+@media (max-width: 600px) {
+  .ContactLensInfo {
+    padding: 0 0.5rem;
+  }
+  .ContactLensInfo .contactlens-content {
+    padding: 0 0rem;
+  }
+  .ContactLensInfo .contactlens-content .manufacturer,
+  .ContactLensInfo .contactlens-content .remarks {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .ContactLensInfo .contactlens-content .manufacturer label,
+  .ContactLensInfo .contactlens-content .remarks label {
+    width: 100%;
+    text-align: center;
+  }
+  .ContactLensInfo .contactlens-content .table3 input {
+    width: 9ch !important;
+  }
+}
+.PriceInfo {
+  padding: 0 3rem;
+}
+.PriceInfo .price-content {
+  padding: 0 2rem;
+}
+.PriceInfo .price-content .framecode p,
+.PriceInfo .price-content .othercode p,
+.PriceInfo .price-content .lenstype p,
+.PriceInfo .price-content .type p {
+  text-align: center;
+  padding: 1rem 0;
+  border-bottom: 2px dashed black;
+}
+.PriceInfo .price-content .framecode .row,
+.PriceInfo .price-content .othercode .row,
+.PriceInfo .price-content .lenstype .row,
+.PriceInfo .price-content .type .row {
+  padding: 1rem 0;
+  display: flex;
+  gap: 30px;
+}
+.PriceInfo .price-content .framecode .row .calc,
+.PriceInfo .price-content .othercode .row .calc,
+.PriceInfo .price-content .lenstype .row .calc,
+.PriceInfo .price-content .type .row .calc {
+  display: flex;
+  gap: 10px;
+}
+.PriceInfo .price-content .framecode .row .calc label,
+.PriceInfo .price-content .othercode .row .calc label,
+.PriceInfo .price-content .lenstype .row .calc label,
+.PriceInfo .price-content .type .row .calc label {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.PriceInfo .price-content .framecode .row .calc input,
+.PriceInfo .price-content .othercode .row .calc input,
+.PriceInfo .price-content .lenstype .row .calc input,
+.PriceInfo .price-content .type .row .calc input {
+  width: 120px !important;
+}
+.PriceInfo .price-content .buttons {
+  padding: 1rem 0;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.PriceInfo .price-content .buttons button {
+  padding: 0.5rem 1rem;
+  background: white;
+  border: 1px solid black;
+  width: -moz-fit-content;
+  width: fit-content;
+  transition: background 0.5s ease, color 0.5s ease;
+}
+.PriceInfo .price-content .buttons button:hover {
+  background: black;
+  color: white;
+}
+.PriceInfo .price-content .input .a {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+.PriceInfo .price-content .input .a label {
+  width: 260px;
+  text-align: right;
+  padding: 0.5rem 0 !important;
+}
+.PriceInfo .price-content .input .a input {
+  width: 100px;
+  height: 25px;
+}
+
+@media (max-width: 600px) {
+  .PriceInfo {
+    padding: 0 0.5rem;
+  }
+  .PriceInfo .price-content {
+    padding: 0;
+  }
+  .PriceInfo .price-content .row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .PriceInfo .price-content .calc label {
+    width: 10ch !important;
   }
 }/*# sourceMappingURL=main.css.map */

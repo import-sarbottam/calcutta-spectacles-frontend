@@ -1,0 +1,98 @@
+.PriceInfo {
+    padding: 0 3rem;
+
+    .price-content {
+        padding: 0 2rem;
+
+        .framecode,
+        .othercode,
+        .lenstype,
+        .type {
+            p {
+                text-align: center;
+                padding: 1rem 0;
+                border-bottom: 2px dashed black;
+            }
+
+            .row {
+                padding: 1rem 0;
+                display: flex;
+                gap: 30px;
+
+                .calc {
+                    display: flex;
+                    gap: 10px;
+
+                    label {
+                        width: fit-content;
+                    }
+
+                    input {
+                        width: 120px !important;
+                    }
+                }
+            }
+        }
+
+        .buttons {
+            padding: 1rem 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+
+            button {
+                padding: 0.5rem 1rem;
+                background: white;
+                border: 1px solid black;
+                width: fit-content;
+                transition: background 0.5s ease, color 0.5s ease;
+            }
+
+            button:hover {
+                background: black;
+                color: white;
+            }
+        }
+
+        .input .a {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+
+            label {
+                width: 260px;
+                text-align: right;
+                padding: 0.5rem 0 !important;
+
+            }
+
+            input {
+                width: 100px;
+                height: 25px;
+            }
+        }
+    }
+}
+
+@media(max-width:600px) {
+
+    .PriceInfo {
+        padding: 0 .5rem;
+
+        .price-content {
+            padding: 0;
+
+            .row {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .calc {
+                label {
+                    width: 10ch !important;
+                }
+            }
+        }
+    }
+}

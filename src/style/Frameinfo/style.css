@@ -32,6 +32,8 @@ body {
   margin: none;
   border: 2px solid black;
   cursor: pointer;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 .enter-frame {

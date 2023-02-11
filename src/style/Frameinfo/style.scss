@@ -5,11 +5,14 @@
     display: flex;
     justify-content: center;
     gap: 1rem;
+
     button {
         font-family: "Poppins", sans-serif;
         font-size: 1rem;
         text-transform: uppercase;
+
     }
+
     button {
         padding: 0.5rem 1rem;
         box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.3);
@@ -17,6 +20,7 @@
         margin: none;
         border: 2px solid black;
         cursor: pointer;
+        width: fit-content;
     }
 }
 
@@ -24,20 +28,23 @@
     margin-top: 5rem;
     display: flex;
     justify-content: center;
+
     .fdetails {
         display: flex;
         flex-direction: column;
         gap: 2rem;
         text-transform: uppercase;
         align-items: flex-start;
+
         .button-edit {
             margin-inline: auto;
         }
     }
 
-    .mrp1 > input {
+    .mrp1>input {
         margin-left: 4rem;
     }
+
     input {
         height: 2rem;
         outline: none;
@@ -51,6 +58,7 @@
     display: flex;
     justify-content: center;
     padding: 5rem 0;
+
     table {
         border-collapse: collapse;
         width: 80%;
@@ -74,7 +82,8 @@
         height: 30px;
         object-fit: cover;
     }
-    td > button {
+
+    td>button {
         padding: 10px;
         background: transparent;
     }
@@ -84,6 +93,7 @@ button.remove,
 button.add {
     border: none;
     cursor: pointer;
+
     img {
         width: 30px;
         height: 30px;
@@ -95,12 +105,14 @@ button.add {
     display: flex;
     flex-wrap: wrap;
     width: 500px;
+
     label {
         margin: 0;
         padding: 0;
         width: 150px;
     }
 }
+
 @media only screen and (max-width: 600px) {
     .fimage {
         width: 300px;

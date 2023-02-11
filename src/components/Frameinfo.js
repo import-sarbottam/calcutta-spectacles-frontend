@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import edit from "../img/edit.png";
 import trash from "../img/trash.png";
-import "../style/style.css";
+import "../style/Frameinfo/style.css";
 import axios from "axios";
 
 function Frameinfo() {
@@ -173,15 +173,15 @@ function Frameinfo() {
     setFramephotorender();
   }
 
-  function handleEntryReset(e){
+  function handleEntryReset(e) {
     setFramephoto();
     setFramephotorender();
-    setFramecode("")
-    setFramename("")
-    setPrice("")
+    setFramecode("");
+    setFramename("");
+    setPrice("");
   }
 
-  function handleEditReset(e){
+  function handleEditReset(e) {
     setCount(count + 1);
     setFramecode("");
     setPrice("");
@@ -259,16 +259,25 @@ function Frameinfo() {
             <div className="button-edit">
               {update ? (
                 <div>
-                  <button style={buttonstyle} onClick={(e) => handleEditReset(e)}>
+                  <button
+                    style={buttonstyle}
+                    onClick={(e) => handleEditReset(e)}
+                  >
                     Cancel
                   </button>
-                  <button style={buttonstyle} onClick={(e) => handleUpdateAPI(e)}>
+                  <button
+                    style={buttonstyle}
+                    onClick={(e) => handleUpdateAPI(e)}
+                  >
                     Update
                   </button>
                 </div>
               ) : (
                 <div>
-                  <button style={buttonstyle} onClick={(e) => handleEntryReset(e)}>
+                  <button
+                    style={buttonstyle}
+                    onClick={(e) => handleEntryReset(e)}
+                  >
                     Reset
                   </button>
                   <button style={buttonstyle} onClick={(e) => handleSubmit(e)}>
@@ -308,6 +317,7 @@ const buttonstyle = {
   border: "2px solid black",
   padding: ".5rem 1.5rem",
   marginRight: ".5rem",
+  width: "fit-content",
 };
 
 const entry = {
