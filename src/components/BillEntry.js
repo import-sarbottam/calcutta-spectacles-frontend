@@ -78,6 +78,61 @@ const Billentry = () => {
   const [shape, setShape] = useState("");
   const [lensManu, setLensManu] = useState("");
 
+  //Contact lens related variable
+  const [contactlens, setContactlens] = useState(false);
+  const [contactlenslogo, setContactlenslogo] = useState(
+    <img src={plus} alt="plus" />
+  );
+  const [type, setType] = useState("");
+  const [long, setLong] = useState("");
+  const [longopt, setLongopt] = useState([
+    <option value={"Daily"}>Daily</option>,
+    <option value={"Weekly"}>Weekly</option>,
+    <option value={"Monthly"}>Monthly</option>,
+    <option value={"Yearly"}>Yearly</option>,
+  ]);
+  const [col, setCol] = useState("");
+  const [enablecol, setEnablecol] = useState(true);
+  const [remark, setRemark] = useState("");
+  const [manu, setManu] = useState("");
+  const [rightdsph, setRightdsph] = useState("");
+  const [rightcly, setRightcly] = useState("");
+  const [rightaxis, setRightaxis] = useState("");
+  const [rightadd, setRightadd] = useState("");
+  const [rightqnt, setRightqnt] = useState("");
+  const [leftdsph, setLeftdsph] = useState("");
+  const [leftcly, setLeftcly] = useState("");
+  const [leftaxis, setLeftaxis] = useState("");
+  const [leftadd, setLeftadd] = useState("");
+  const [leftqnt, setLeftqnt] = useState("");
+
+  //Price breakup related variables
+  const [pricebreak, setPricebreak] = useState(false);
+  const [pricebreaklogo, setPricebreaklogo] = useState(
+    <img src={plus} alt="plus" />
+  );
+  const [frameprice, setFrameprice] = useState(0.0);
+  const [framegst, setFramegst] = useState(0.0);
+  const [framediscount, setFramediscount] = useState(0.0);
+  const [otherprice, setOtherprice] = useState(0.0);
+  const [othergst, setOthergst] = useState(0.0);
+  const [otherdiscount, setOtherdiscount] = useState(0.0);
+  const [lensprice, setLensprice] = useState(0.0);
+  const [lensgst, setLensgst] = useState(0.0);
+  const [lensdiscount, setLensdiscount] = useState(0.0);
+  const [contactprice, setContactprice] = useState(0.0);
+  const [contactgst, setContactgst] = useState(0.0);
+  const [contactdiscount, setContactdiscount] = useState(0.0);
+  const [amountbeforediscount, setAmountbeforediscount] = useState(0.0);
+  const [amountafterdiscount, setAmountafterdiscount] = useState(0.0);
+  const [discount, setDiscount] = useState(0.0);
+  const [cgst, setCgst] = useState(0.0);
+  const [sgst, setSgst] = useState(0.0);
+  const [totalamount, setTotalamount] = useState(0.0);
+  const [advancedpayment, setAdvancedpayment] = useState(0.0);
+  const [purchasetype, setPurchasetype] = useState("Composite");
+  const [gstdisable, setGstdisable] = useState(true);
+
   //Basic info related function
 
   function handleBasic(e) {
@@ -142,6 +197,115 @@ const Billentry = () => {
     } else {
       setLenslogo(<img src={minus} alt="minus" />);
       setLens(true);
+    }
+  }
+
+  //Contact lens related function
+
+  function handleContactlens(e) {
+    if (contactlens) {
+      setContactlenslogo(<img src={plus} alt="plus" />);
+      setContactlens(false);
+    } else {
+      setContactlenslogo(<img src={minus} alt="minus" />);
+      setContactlens(true);
+    }
+  }
+
+  function handleType(e) {
+    setType(e.target.value);
+    //Reversed because of delay in set function
+    if (e.target.value === "White" || e.target.value === "") {
+      setEnablecol(true);
+      setLongopt([
+        <option value={""}></option>,
+        <option value={"Daily"}>Daily</option>,
+        <option value={"Weekly"}>Weekly</option>,
+        <option value={"Monthly"}>Monthly</option>,
+        <option value={"Yearly"}>Yearly</option>,
+      ]);
+    } else {
+      setEnablecol(false);
+      setLongopt([
+        <option value={""}></option>,
+        <option value={"Monthly"}>Monthly</option>,
+        <option value={"Yearly"}>Yearly</option>,
+      ]);
+    }
+  }
+
+  //Price breakup related function
+
+  function handlePricebreak(e) {
+    if (pricebreak) {
+      setPricebreaklogo(<img src={plus} alt="plus" />);
+      setPricebreak(false);
+    } else {
+      setPricebreaklogo(<img src={minus} alt="minus" />);
+      setPricebreak(true);
+    }
+  }
+
+  function handleAmt(e) {
+    e.preventDefault();
+
+    if (
+      isNaN(parseFloat(frameprice)) ||
+      isNaN(parseFloat(otherprice)) ||
+      isNaN(parseFloat(lensprice)) ||
+      isNaN(parseFloat(contactprice)) ||
+      isNaN(parseFloat(framegst)) ||
+      isNaN(parseFloat(othergst)) ||
+      isNaN(parseFloat(lensgst)) ||
+      isNaN(parseFloat(contactgst)) ||
+      isNaN(parseFloat(framediscount)) ||
+      isNaN(parseFloat(otherdiscount)) ||
+      isNaN(parseFloat(lensdiscount)) ||
+      isNaN(parseFloat(contactdiscount))
+    ) {
+      console.log("letters detected");
+      return;
+    }
+
+    const tamount =
+      parseFloat(frameprice) +
+      parseFloat(otherprice) +
+      parseFloat(lensprice) +
+      parseFloat(contactprice);
+    const tdis =
+      parseFloat(framediscount) +
+      parseFloat(otherdiscount) +
+      parseFloat(lensdiscount) +
+      parseFloat(contactdiscount);
+    const framegstamt =
+      (parseFloat(frameprice) - parseFloat(framediscount)) *
+      (parseFloat(framegst) / 100);
+    const othergstamt =
+      (parseFloat(otherprice) - parseFloat(otherdiscount)) *
+      (parseFloat(othergst) / 100);
+    const lensgstamt =
+      (parseFloat(lensprice) - parseFloat(lensdiscount)) *
+      (parseFloat(lensgst) / 100);
+    const contactgstamt =
+      (parseFloat(contactprice) - parseFloat(contactdiscount)) *
+      (parseFloat(contactgst) / 100);
+    const totalgst = framegstamt + othergstamt + lensgstamt + contactgstamt;
+
+    setAmountbeforediscount(tamount);
+    setDiscount(tdis);
+    setAmountafterdiscount(tamount - tdis);
+    setSgst(totalgst / 2);
+    setCgst(totalgst / 2);
+    setTotalamount(tamount - tdis + totalgst);
+  }
+
+  function handlePurchaseType(e) {
+    setPurchasetype(e.target.value);
+
+    if (e.target.value === "Composite") {
+      setGstdisable(true);
+    } else {
+      setGstdisable(false);
     }
   }
 
@@ -730,6 +894,407 @@ const Billentry = () => {
                       onChange={(e) => setLensRemark(e.target.value)}
                     />
                   </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+
+      <section>
+        <div className="ContactLensInfo">
+          <div className="header">
+            <h1>Contact Lens</h1>
+            <button onClick={(e) => handleContactlens(e)}>
+              {contactlenslogo}
+            </button>
+          </div>
+
+          {contactlens && (
+            <div className="contactlens-content">
+              <div className="row">
+                <div className="type">
+                  <label>Type:</label>
+                  <select value={type} onChange={(e) => handleType(e)}>
+                    <option value=""></option>
+                    <option value="White">White</option>
+                    <option value="Color">Color</option>
+                  </select>
+                </div>
+
+                <div className="longitivity">
+                  <label>Longitivity:</label>
+                  <select
+                    value={long}
+                    onChange={(e) => setLong(e.target.value)}
+                  >
+                    {longopt}
+                  </select>
+                </div>
+
+                <div className="color">
+                  <label>Color:</label>
+                  <input
+                    type="text"
+                    disabled={enablecol}
+                    value={col}
+                    onChange={(e) => setCol(e.target.value)}
+                  />
+                </div>
+              </div>
+
+              <div className="table3">
+                <table>
+                  <tr>
+                    <th>EYE</th>
+                    <th>DSPH</th>
+                    <th>C.L.Y</th>
+                    <th>AXIS</th>
+                    <th>ADD</th>
+                    <th>QUANTITY</th>
+                  </tr>
+                  <tr>
+                    <td>R</td>
+                    <td>
+                      <input
+                        type="text"
+                        value={rightdsph}
+                        onChange={(e) => setRightdsph(e.target.value)}
+                        size={10}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="text"
+                        value={rightcly}
+                        onChange={(e) => setRightcly(e.target.value)}
+                        size={10}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="text"
+                        value={rightaxis}
+                        onChange={(e) => setRightaxis(e.target.value)}
+                        size={10}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="text"
+                        value={rightadd}
+                        onChange={(e) => setRightadd(e.target.value)}
+                        size={10}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="text"
+                        value={rightqnt}
+                        onChange={(e) => setRightqnt(e.target.value)}
+                        size={10}
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>L</td>
+                    <td>
+                      <input
+                        type="text"
+                        value={leftdsph}
+                        onChange={(e) => setLeftdsph(e.target.value)}
+                        size={10}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="text"
+                        value={leftcly}
+                        onChange={(e) => setLeftcly(e.target.value)}
+                        size={10}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="text"
+                        value={leftaxis}
+                        onChange={(e) => setLeftaxis(e.target.value)}
+                        size={10}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="text"
+                        value={leftadd}
+                        onChange={(e) => setLeftadd(e.target.value)}
+                        size={10}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="text"
+                        value={leftqnt}
+                        onChange={(e) => setLeftqnt(e.target.value)}
+                        size={10}
+                      />
+                    </td>
+                  </tr>
+                </table>
+              </div>
+
+              <div className="manufacturer">
+                <label>Manufacturer:</label>
+                <input
+                  type="text"
+                  value={manu}
+                  onChange={(e) => setManu(e.target.value)}
+                />
+              </div>
+
+              <div className="remarks">
+                <label>Remarks:</label>
+                <textarea
+                  value={remark}
+                  onChange={(e) => setRemark(e.target.value)}
+                />
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+
+      <section>
+        <div className="PriceInfo">
+          <div className="header">
+            <h1>Price Breakup</h1>
+            <button onClick={(e) => handlePricebreak(e)}>
+              {pricebreaklogo}
+            </button>
+          </div>
+
+          {pricebreak && (
+            <div className="price-content">
+              {framecode && (
+                <div className="framecode">
+                  <p>Frame</p>
+
+                  <div className="row">
+                    <div className="calc">
+                      <label>GST%:</label>
+                      <input
+                        type="text"
+                        disabled={gstdisable}
+                        value={framegst}
+                        onChange={(e) => setFramegst(e.target.value)}
+                      />
+                    </div>
+
+                    <div className="calc">
+                      <label>Amount:</label>
+                      <input
+                        type="text"
+                        value={frameprice}
+                        onChange={(e) => setFrameprice(e.target.value)}
+                      />
+                    </div>
+
+                    <div className="calc">
+                      <label>Discount:</label>
+                      <input
+                        type="text"
+                        value={framediscount}
+                        onChange={(e) => setFramediscount(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {othercode && (
+                <div className="othercode">
+                  <p>Other</p>
+                  <div className="row">
+                    <div className="calc">
+                      <label>GST%:</label>
+                      <input
+                        type="text"
+                        disabled={gstdisable}
+                        value={othergst}
+                        onChange={(e) => setOthergst(e.target.value)}
+                      />
+                    </div>
+
+                    <div className="calc">
+                      <label>Amount:</label>
+                      <input
+                        type="text"
+                        value={otherprice}
+                        onChange={(e) => setOtherprice(e.target.value)}
+                      />
+                    </div>
+
+                    <div className="calc">
+                      <label>Discount:</label>
+                      <input
+                        type="text"
+                        value={otherdiscount}
+                        onChange={(e) => setOtherdiscount(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {lenstype && (
+                <div className="lenstype">
+                  <p>Lens</p>
+                  <div className="row">
+                    <div className="calc">
+                      <label>GST%:</label>
+                      <input
+                        type="text"
+                        disabled={gstdisable}
+                        value={lensgst}
+                        onChange={(e) => setLensgst(e.target.value)}
+                      />
+                    </div>
+
+                    <div className="calc">
+                      <label>Amount:</label>
+                      <input
+                        type="text"
+                        value={lensprice}
+                        onChange={(e) => setLensprice(e.target.value)}
+                      />
+                    </div>
+                    <div className="calc">
+                      <label>Discount:</label>
+                      <input
+                        type="text"
+                        value={lensdiscount}
+                        onChange={(e) => setLensdiscount(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {type && (
+                <div className="type">
+                  <p>Contact Lens</p>
+                  <div className="row">
+                    <div className="calc">
+                      <label>GST%:</label>
+                      <input
+                        type="text"
+                        disabled={gstdisable}
+                        value={contactgst}
+                        onChange={(e) => setContactgst(e.target.value)}
+                      />
+                    </div>
+
+                    <div className="calc">
+                      <label>Amount:</label>
+                      <input
+                        type="text"
+                        value={contactprice}
+                        onChange={(e) => setContactprice(e.target.value)}
+                      />
+                    </div>
+
+                    <div className="calc">
+                      <label>Discount:</label>
+                      <input
+                        type="text"
+                        value={contactdiscount}
+                        onChange={(e) => setContactdiscount(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              <div className="buttons">
+                <select
+                  value={purchasetype}
+                  onChange={(e) => handlePurchaseType(e)}
+                >
+                  <option value="Composite">Composite</option>
+                  <option value="Excluding Tax">Excluding Tax</option>
+                  <option value="Including Tax">Including Tax</option>
+                </select>
+
+                <button onClick={(e) => handleAmt(e)}>Calculate</button>
+              </div>
+
+              <div className="input">
+                <div className="ta-bd a">
+                  <label>Total Amount(Before Discount):</label>
+                  <input
+                    disabled={true}
+                    type="text"
+                    value={amountbeforediscount}
+                    onChange={(e) => setAmountbeforediscount(e.target.value)}
+                  />
+                </div>
+
+                <div className="discount a">
+                  <label>Discount: </label>
+                  <input
+                    disabled={true}
+                    type="text"
+                    value={discount}
+                    onChange={(e) => setDiscount(e.target.value)}
+                  />
+                </div>
+
+                <div className="ta-ad a">
+                  <label>Total Amount(After Discount)</label>
+                  <input
+                    disabled={true}
+                    type="text"
+                    value={amountafterdiscount}
+                    onChange={(e) => setAmountafterdiscount(e.target.value)}
+                  />
+                </div>
+
+                <div className="cgst a">
+                  <label>CGST:</label>
+                  <input
+                    disabled={true}
+                    type="text"
+                    value={cgst}
+                    onChange={(e) => setCgst(e.target.value)}
+                  />
+                </div>
+
+                <div className="sgst a">
+                  <label>SGST:</label>
+                  <input
+                    disabled={true}
+                    type="text"
+                    value={sgst}
+                    onChange={(e) => setSgst(e.target.value)}
+                  />
+                </div>
+
+                <div className="tot-amt a">
+                  <label>Total Amount:</label>
+                  <input
+                    disabled={true}
+                    type="text"
+                    value={totalamount}
+                    onChange={(e) => setTotalamount(e.target.value)}
+                  />
+                </div>
+
+                <div className="payment a">
+                  <label>Advanced Payment:</label>
+                  <input
+                    type="text"
+                    value={advancedpayment}
+                    onChange={(e) => setAdvancedpayment(e.target.value)}
+                  />
                 </div>
               </div>
             </div>

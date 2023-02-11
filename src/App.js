@@ -15,12 +15,4 @@ function App() {
   );
 }
 
-// const container = {
-//   backgroundColor: "grey",
-//   display: "flex",
-//   minHeight: "100vh",
-//   width: "100%",
-//   fontFamily: "sans-serif",
-// };
-
 export default App;

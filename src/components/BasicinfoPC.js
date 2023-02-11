@@ -1301,6 +1301,7 @@ const BasicinfoPC = () => {
             ) : (
               <></>
             )}
+
             {lenstype ? (
               <div>
                 <p style={{ display: "flex", justifyContent: "center" }}>
@@ -1342,6 +1343,7 @@ const BasicinfoPC = () => {
             ) : (
               <></>
             )}
+
             {type ? (
               <div>
                 <p style={{ display: "flex", justifyContent: "center" }}>
@@ -1383,6 +1385,7 @@ const BasicinfoPC = () => {
             ) : (
               <></>
             )}
+
             <div style={{ display: "flex", justifyContent: "center" }}>
               <select
                 style={entry}
