@@ -3,9 +3,7 @@ import plus from "../img/plus.png";
 import minus from "../img/minus.png";
 import { useState, useEffect } from "react";
 import axios from "axios";
-
-// import frames from "../data/required/frame.json"; //get from backend later
-// import others from "../data/required/others.json"; //get from backend later
+// import { Link } from "react-router-dom";
 
 import "../style/Billentry/main.css";
 
@@ -90,11 +88,19 @@ const Billentry = () => {
   const [type, setType] = useState("");
   const [long, setLong] = useState("");
   const [longopt, setLongopt] = useState([
-    <option value=""></option>,
-    <option value={"Daily"}>Daily</option>,
-    <option value={"Weekly"}>Weekly</option>,
-    <option value={"Monthly"}>Monthly</option>,
-    <option value={"Yearly"}>Yearly</option>,
+    <option key="0" value=""></option>,
+    <option key="1" value={"Daily"}>
+      Daily
+    </option>,
+    <option key="2" value={"Weekly"}>
+      Weekly
+    </option>,
+    <option key="3" value={"Monthly"}>
+      Monthly
+    </option>,
+    <option key="4" value={"Yearly"}>
+      Yearly
+    </option>,
   ]);
   const [col, setCol] = useState("");
   const [enablecol, setEnablecol] = useState(true);
@@ -137,6 +143,8 @@ const Billentry = () => {
   const [advancedpayment, setAdvancedpayment] = useState(0.0);
   const [purchasetype, setPurchasetype] = useState("Composite");
   const [gstdisable, setGstdisable] = useState(true);
+  const [paymentwith, setPaymentwith] = useState("");
+  const [calculated, setCalculated] = useState(false);
 
   //Basic info related function
 
@@ -200,13 +208,6 @@ const Billentry = () => {
     async function setOthers() {
       // eslint-disable-next-line
       otherselect = [<option key="0" value=""></option>];
-      // for (let i = 0; i < others.length; i++) {
-      //   otherselect.push(
-      //     <option key={others[i].code} value={others[i].code}>
-      //       {others[i].itemname}
-      //     </option>
-      //   );
-      // }
       let res = await axios.get(
         `http://192.168.0.169:8000/api/getother/${othertyping}`
       );
@@ -230,11 +231,6 @@ const Billentry = () => {
     async function setFrames() {
       // eslint-disable-next-line
       frameselect = [<option key="0" value=""></option>];
-      // for (let i = 0; i < frames.length; i++) {
-      //   frameselect.push(
-      //     <option value={frames[i].shortname}>{frames[i].fullnme}</option>
-      //   );
-      // }
       let res = await axios.get(
         `http://192.168.0.169:8000/api/getframe/${frametyping}`
       );
@@ -283,18 +279,30 @@ const Billentry = () => {
     if (e.target.value === "White" || e.target.value === "") {
       setEnablecol(true);
       setLongopt([
-        <option value=""></option>,
-        <option value={"Daily"}>Daily</option>,
-        <option value={"Weekly"}>Weekly</option>,
-        <option value={"Monthly"}>Monthly</option>,
-        <option value={"Yearly"}>Yearly</option>,
+        <option key="0" value=""></option>,
+        <option key="1" value={"Daily"}>
+          Daily
+        </option>,
+        <option key="2" value={"Weekly"}>
+          Weekly
+        </option>,
+        <option key="3" value={"Monthly"}>
+          Monthly
+        </option>,
+        <option key="4" value={"Yearly"}>
+          Yearly
+        </option>,
       ]);
     } else {
       setEnablecol(false);
       setLongopt([
-        <option value=""></option>,
-        <option value={"Monthly"}>Monthly</option>,
-        <option value={"Yearly"}>Yearly</option>,
+        <option key="0" value=""></option>,
+        <option key="1" value={"Monthly"}>
+          Monthly
+        </option>,
+        <option key="2" value={"Yearly"}>
+          Yearly
+        </option>,
       ]);
     }
   }
@@ -362,6 +370,7 @@ const Billentry = () => {
     setSgst(totalgst / 2);
     setCgst(totalgst / 2);
     setTotalamount(tamount - tdis + totalgst);
+    setCalculated(true);
   }
 
   function handlePurchaseType(e) {
@@ -372,6 +381,115 @@ const Billentry = () => {
     } else {
       setGstdisable(false);
     }
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    await axios
+      .post(
+        "http://192.168.0.169:8000/api/entry/",
+        {
+          dod: dod,
+          delat: delat,
+          coupon: coupon,
+          name: name,
+          address: address,
+          mobile: mob,
+          dob: dob,
+          doa: doa,
+          doctor_name: doc,
+          frame_code: framecode,
+          wearer_photo: userphoto,
+          other_code: othercode,
+          other_qty: otherquant,
+          right_dsph: lensrightdsph,
+          right_cly: lensrightcly,
+          right_axis: lensrightaxis,
+          right_add: lensrightadd,
+          right_pd: lensrightpd,
+          right_fitt: lensrightfitt,
+          right_prism: lensrightprism,
+          right_ercd: lensrightercd,
+          left_dsph: lensleftdsph,
+          left_cly: lensleftcly,
+          left_axis: lensleftaxis,
+          left_add: lensleftadd,
+          left_pd: lensleftpd,
+          left_fitt: lensleftfitt,
+          left_prism: lensleftprism,
+          left_ercd: lensleftercd,
+          lens_type: lenstype,
+          lens_power: lenspow,
+          antiglare: glare,
+          bifocal_type: bifocal,
+          photochromatic: photo,
+          antiscratch: scratch,
+          index: index,
+          diameter: diameter,
+          shape: shape,
+          precal_a: precala,
+          precal_b: precalb,
+          precal_d: precald,
+          wrap: wrap,
+          inclination: inc,
+          progression: progression,
+          reading: read,
+          dominant_eye: domeye,
+          wearer_behav: wear,
+          lens_manu: lensManu,
+          lens_remarks: lensRemark,
+          contact_type: type,
+          longitivity: long,
+          con_color: col,
+          con_right_dsph: rightdsph,
+          con_right_cly: rightcly,
+          con_right_axis: rightaxis,
+          con_right_add: rightadd,
+          con_right_quant: rightqnt,
+          con_left_dsph: leftdsph,
+          con_left_cly: leftcly,
+          con_left_axis: leftaxis,
+          con_left_add: leftadd,
+          con_left_quant: leftqnt,
+          con_manu: manu,
+          con_remarks: remark,
+          purchase_type: purchasetype,
+          frame_price: frameprice,
+          frame_gst: framegst,
+          frame_discount: framediscount,
+          other_price: otherprice,
+          other_gst: othergst,
+          other_discount: otherdiscount,
+          lens_price: lensprice,
+          lens_gst: lensgst,
+          lens_discount: lensdiscount,
+          contact_lens_price: contactprice,
+          contact_lens_gst: contactgst,
+          contact_lens_discount: contactdiscount,
+          amt_before_discount: amountbeforediscount,
+          total_discount: discount,
+          amt_after_discount: amountafterdiscount,
+          cgst: cgst,
+          sgst: sgst,
+          amt_after_tax: totalamount,
+          advanced_payment: advancedpayment,
+          payment_method: paymentwith,
+        },
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      )
+      .then((res) => {
+        if (res.status === 201) {
+          window.location.reload(false);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   return (
@@ -504,12 +622,19 @@ const Billentry = () => {
                       </div>
                     )}
                     <input
+                      id="imgupload"
                       type="file"
                       name="myImage"
+                      style={{ display: "none" }}
                       onChange={(event) => {
                         setUserphoto(event.target.files[0]);
                       }}
                     />
+                    <div>
+                      <button>
+                        <label htmlFor="imgupload">Upload Image</label>
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -558,151 +683,155 @@ const Billentry = () => {
             <div className="lens-content">
               <div className="table1">
                 <table>
-                  <tr>
-                    <th>EYE</th>
-                    <th>DSPH</th>
-                    <th>C.L.Y</th>
-                    <th>AXIS</th>
-                    <th>ADD</th>
-                    <th>P.D.</th>
-                    <th>Fitt.Ht.</th>
-                    <th>Prism</th>
-                    <th>ERCd</th>
-                  </tr>
-                  <tr>
-                    <td>R</td>
-                    <td>
-                      <input
-                        type="text"
-                        value={lensrightdsph}
-                        onChange={(e) => setLensRightdsph(e.target.value)}
-                        size={5}
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        value={lensrightcly}
-                        onChange={(e) => setLensRightcly(e.target.value)}
-                        size={5}
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        value={lensrightaxis}
-                        onChange={(e) => setLensRightaxis(e.target.value)}
-                        size={5}
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        value={lensrightadd}
-                        onChange={(e) => setLensRightadd(e.target.value)}
-                        size={5}
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        value={lensrightpd}
-                        onChange={(e) => setLensRightpd(e.target.value)}
-                        size={5}
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        value={lensrightfitt}
-                        onChange={(e) => setLensRightfitt(e.target.value)}
-                        size={5}
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        value={lensrightprism}
-                        onChange={(e) => setLensRightprism(e.target.value)}
-                        size={5}
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        value={lensrightercd}
-                        onChange={(e) => setLensRightercd(e.target.value)}
-                        size={5}
-                      />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>L</td>
-                    <td>
-                      <input
-                        type="text"
-                        value={lensleftdsph}
-                        onChange={(e) => setLensLeftdsph(e.target.value)}
-                        size={5}
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        value={lensleftcly}
-                        onChange={(e) => setLensLeftcly(e.target.value)}
-                        size={5}
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        value={lensleftaxis}
-                        onChange={(e) => setLensLeftaxis(e.target.value)}
-                        size={5}
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        value={lensleftadd}
-                        onChange={(e) => setLensLeftadd(e.target.value)}
-                        size={5}
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        value={lensleftpd}
-                        onChange={(e) => setLensLeftpd(e.target.value)}
-                        size={5}
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        value={lensleftfitt}
-                        onChange={(e) => setLensLeftfitt(e.target.value)}
-                        size={5}
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        value={lensleftprism}
-                        onChange={(e) => setLensLeftprism(e.target.value)}
-                        size={5}
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        value={lensleftercd}
-                        onChange={(e) => setLensLeftercd(e.target.value)}
-                        size={5}
-                      />
-                    </td>
-                  </tr>
+                  <thead>
+                    <tr>
+                      <th>EYE</th>
+                      <th>DSPH</th>
+                      <th>C.L.Y</th>
+                      <th>AXIS</th>
+                      <th>ADD</th>
+                      <th>P.D.</th>
+                      <th>Fitt.Ht.</th>
+                      <th>Prism</th>
+                      <th>ERCd</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>R</td>
+                      <td>
+                        <input
+                          type="text"
+                          value={lensrightdsph}
+                          onChange={(e) => setLensRightdsph(e.target.value)}
+                          size={5}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="text"
+                          value={lensrightcly}
+                          onChange={(e) => setLensRightcly(e.target.value)}
+                          size={5}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="text"
+                          value={lensrightaxis}
+                          onChange={(e) => setLensRightaxis(e.target.value)}
+                          size={5}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="text"
+                          value={lensrightadd}
+                          onChange={(e) => setLensRightadd(e.target.value)}
+                          size={5}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="text"
+                          value={lensrightpd}
+                          onChange={(e) => setLensRightpd(e.target.value)}
+                          size={5}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="text"
+                          value={lensrightfitt}
+                          onChange={(e) => setLensRightfitt(e.target.value)}
+                          size={5}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="text"
+                          value={lensrightprism}
+                          onChange={(e) => setLensRightprism(e.target.value)}
+                          size={5}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="text"
+                          value={lensrightercd}
+                          onChange={(e) => setLensRightercd(e.target.value)}
+                          size={5}
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>L</td>
+                      <td>
+                        <input
+                          type="text"
+                          value={lensleftdsph}
+                          onChange={(e) => setLensLeftdsph(e.target.value)}
+                          size={5}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="text"
+                          value={lensleftcly}
+                          onChange={(e) => setLensLeftcly(e.target.value)}
+                          size={5}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="text"
+                          value={lensleftaxis}
+                          onChange={(e) => setLensLeftaxis(e.target.value)}
+                          size={5}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="text"
+                          value={lensleftadd}
+                          onChange={(e) => setLensLeftadd(e.target.value)}
+                          size={5}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="text"
+                          value={lensleftpd}
+                          onChange={(e) => setLensLeftpd(e.target.value)}
+                          size={5}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="text"
+                          value={lensleftfitt}
+                          onChange={(e) => setLensLeftfitt(e.target.value)}
+                          size={5}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="text"
+                          value={lensleftprism}
+                          onChange={(e) => setLensLeftprism(e.target.value)}
+                          size={5}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="text"
+                          value={lensleftercd}
+                          onChange={(e) => setLensLeftercd(e.target.value)}
+                          size={5}
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
                 </table>
               </div>
 
@@ -1015,100 +1144,104 @@ const Billentry = () => {
 
               <div className="table3">
                 <table>
-                  <tr>
-                    <th>EYE</th>
-                    <th>DSPH</th>
-                    <th>C.L.Y</th>
-                    <th>AXIS</th>
-                    <th>ADD</th>
-                    <th>QUANTITY</th>
-                  </tr>
-                  <tr>
-                    <td>R</td>
-                    <td>
-                      <input
-                        type="text"
-                        value={rightdsph}
-                        onChange={(e) => setRightdsph(e.target.value)}
-                        size={10}
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        value={rightcly}
-                        onChange={(e) => setRightcly(e.target.value)}
-                        size={10}
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        value={rightaxis}
-                        onChange={(e) => setRightaxis(e.target.value)}
-                        size={10}
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        value={rightadd}
-                        onChange={(e) => setRightadd(e.target.value)}
-                        size={10}
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        value={rightqnt}
-                        onChange={(e) => setRightqnt(e.target.value)}
-                        size={10}
-                      />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>L</td>
-                    <td>
-                      <input
-                        type="text"
-                        value={leftdsph}
-                        onChange={(e) => setLeftdsph(e.target.value)}
-                        size={10}
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        value={leftcly}
-                        onChange={(e) => setLeftcly(e.target.value)}
-                        size={10}
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        value={leftaxis}
-                        onChange={(e) => setLeftaxis(e.target.value)}
-                        size={10}
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        value={leftadd}
-                        onChange={(e) => setLeftadd(e.target.value)}
-                        size={10}
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        value={leftqnt}
-                        onChange={(e) => setLeftqnt(e.target.value)}
-                        size={10}
-                      />
-                    </td>
-                  </tr>
+                  <thead>
+                    <tr>
+                      <th>EYE</th>
+                      <th>DSPH</th>
+                      <th>C.L.Y</th>
+                      <th>AXIS</th>
+                      <th>ADD</th>
+                      <th>QUANTITY</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>R</td>
+                      <td>
+                        <input
+                          type="text"
+                          value={rightdsph}
+                          onChange={(e) => setRightdsph(e.target.value)}
+                          size={10}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="text"
+                          value={rightcly}
+                          onChange={(e) => setRightcly(e.target.value)}
+                          size={10}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="text"
+                          value={rightaxis}
+                          onChange={(e) => setRightaxis(e.target.value)}
+                          size={10}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="text"
+                          value={rightadd}
+                          onChange={(e) => setRightadd(e.target.value)}
+                          size={10}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="text"
+                          value={rightqnt}
+                          onChange={(e) => setRightqnt(e.target.value)}
+                          size={10}
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>L</td>
+                      <td>
+                        <input
+                          type="text"
+                          value={leftdsph}
+                          onChange={(e) => setLeftdsph(e.target.value)}
+                          size={10}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="text"
+                          value={leftcly}
+                          onChange={(e) => setLeftcly(e.target.value)}
+                          size={10}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="text"
+                          value={leftaxis}
+                          onChange={(e) => setLeftaxis(e.target.value)}
+                          size={10}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="text"
+                          value={leftadd}
+                          onChange={(e) => setLeftadd(e.target.value)}
+                          size={10}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="text"
+                          value={leftqnt}
+                          onChange={(e) => setLeftqnt(e.target.value)}
+                          size={10}
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
                 </table>
               </div>
 
@@ -1366,7 +1499,25 @@ const Billentry = () => {
                     onChange={(e) => setAdvancedpayment(e.target.value)}
                   />
                 </div>
+
+                <div>
+                  <label>Payment Method:</label>
+                  <select
+                    value={paymentwith}
+                    onChange={(e) => setPaymentwith(e.target.value)}
+                  >
+                    <option value=""></option>
+                    <option value="Cash">Cash</option>
+                    <option value="UPI">UPI</option>
+                    <option value="Card">Card</option>
+                  </select>
+                </div>
               </div>
+              {calculated && (
+                <div className="buttons">
+                  <button onClick={(e) => handleSubmit(e)}>Submit</button>
+                </div>
+              )}
             </div>
           )}
         </div>
