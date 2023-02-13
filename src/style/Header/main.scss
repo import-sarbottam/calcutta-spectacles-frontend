@@ -1,0 +1,25 @@
+.container {
+    border-bottom: 2px solid black;
+    width: 100%;
+
+    ul {
+        display: flex;
+        justify-content: space-evenly;
+        padding: 1rem 0;
+
+        li {
+            text-transform: uppercase;
+            text-decoration: none;
+            list-style: none;
+            font-size: 25px;
+        }
+
+        label {
+            cursor: pointer;
+        }
+
+        label:hover {
+            border-bottom: 2px solid black;
+        }
+    }
+}
