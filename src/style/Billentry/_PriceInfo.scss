@@ -63,10 +63,14 @@
                 width: 260px;
                 text-align: right;
                 padding: 0.5rem 0 !important;
-
             }
 
             input {
+                width: 100px;
+                height: 25px;
+            }
+
+            select {
                 width: 100px;
                 height: 25px;
             }
@@ -74,10 +78,9 @@
     }
 }
 
-@media(max-width:600px) {
-
+@media (max-width: 600px) {
     .PriceInfo {
-        padding: 0 .5rem;
+        padding: 0 0.5rem;
 
         .price-content {
             padding: 0;

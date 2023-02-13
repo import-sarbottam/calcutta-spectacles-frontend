@@ -51,6 +51,24 @@ body {
 .enter-frame .fdetails .button-edit {
   margin-inline: auto;
 }
+.enter-frame .fdetails .button-edit button {
+  background: white;
+}
+.enter-frame .fdetails .button-edit .csv-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.enter-frame .fdetails .button-edit .csv-label label {
+  font-size: 11px;
+}
+.enter-frame .fdetails .button-edit .csv-label button {
+  padding: 0 0.5rem;
+  height: 18px !important;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-top: 0.5rem;
+}
 .enter-frame .mrp1 > input {
   margin-left: 4rem;
 }
@@ -109,12 +127,23 @@ button.add img {
 .fimage {
   display: flex;
   flex-wrap: wrap;
-  width: 500px;
+  align-items: center;
+  width: 400px;
 }
 .fimage label {
   margin: 0;
   padding: 0;
   width: 150px;
+}
+.fimage .image-label label {
+  font-size: 11px;
+}
+.fimage .image-label button {
+  background: white;
+  height: 18px !important;
+  padding: 0 0.5rem;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 @media only screen and (max-width: 600px) {

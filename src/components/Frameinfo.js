@@ -3,6 +3,7 @@ import edit from "../img/edit.png";
 import trash from "../img/trash.png";
 import "../style/Frameinfo/style.css";
 import axios from "axios";
+import Papa from "papaparse";
 
 function Frameinfo() {
   const [framephoto, setFramephoto] = useState();
@@ -15,6 +16,7 @@ function Frameinfo() {
   const [update, setUpdate] = useState(false);
   const [framephotorender, setFramephotorender] = useState(null);
   const [updateid, setUpdateid] = useState("");
+  const [len, setLen] = useState();
 
   async function handleDelete(id) {
     axios
@@ -82,6 +84,7 @@ function Frameinfo() {
     async function setFrame() {
       let rendertemp = [];
       let res = await axios.get("http://192.168.0.169:8000/api/getframe/");
+      setLen(res.data.length);
       for (let i = 0; i < res.data.length; i++) {
         rendertemp.push(
           <tr key={res.data[i].frame_code}>
@@ -193,6 +196,44 @@ function Frameinfo() {
     setAddframe(false);
   }
 
+  function handleJSON(e) {
+    Papa.parse(e.target.files[0], {
+      header: true,
+      skipEmptyLines: true,
+      complete: async function (results) {
+        for (let i = len; i < results.data.length; i++) {
+          await axios
+            .post(
+              "http://192.168.0.169:8000/api/frame/",
+              {
+                frame_code: results.data[i].Code,
+                frame_name: results.data[i].Itemname,
+                frame_price: results.data[i].Rate,
+              },
+              {
+                headers: {
+                  "Content-Type": "multipart/form-data",
+                },
+              }
+            )
+            .then((response) => {
+              if (response.status === 201) {
+                setCount(count + 1);
+                setFramecode("");
+                setPrice("");
+                setFramename("");
+                setFramephoto();
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
+        window.location.reload(false);
+      },
+    });
+  }
+
   return (
     <div className="frameinfo">
       <div className="switch">
@@ -241,12 +282,18 @@ function Frameinfo() {
                 </div>
               )}
               <input
-                style={entry}
+                id="imgupload"
                 type="file"
                 name="myImage"
                 accept="image/jpeg,image/png,image"
+                style={{ display: "none" }}
                 onChange={(e) => handlePhoto(e)}
               />
+              <div className="image-label">
+                <button>
+                  <label htmlFor="imgupload">Upload Image</label>
+                </button>
+              </div>
             </div>
             <div className="mrp mrp1">
               <label>MRP :&emsp;&emsp;</label>
@@ -285,6 +332,22 @@ function Frameinfo() {
                   </button>
                 </div>
               )}
+              {!update && (
+                <div>
+                  <input
+                    id="csv"
+                    accept=".csv"
+                    style={{ display: "none" }}
+                    type="file"
+                    onChange={(e) => handleJSON(e)}
+                  />
+                  <div className="csv-label">
+                    <button>
+                      <label htmlFor="csv">Upload CSV</label>
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
           <br />
@@ -318,15 +381,6 @@ const buttonstyle = {
   padding: ".5rem 1.5rem",
   marginRight: ".5rem",
   width: "fit-content",
-};
-
-const entry = {
-  marginLeft: "1%",
-  marginRight: "3.75%",
-  marginTop: "1%",
-  marginBottom: "1%",
-  padding: "0.25%",
-  verticalAlign: "middle",
 };
 
 export default Frameinfo;

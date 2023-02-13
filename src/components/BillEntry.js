@@ -625,12 +625,13 @@ const Billentry = () => {
                       id="imgupload"
                       type="file"
                       name="myImage"
+                      accept="image/jpeg,image/png,image"
                       style={{ display: "none" }}
                       onChange={(event) => {
                         setUserphoto(event.target.files[0]);
                       }}
                     />
-                    <div>
+                    <div className="image-label">
                       <button>
                         <label htmlFor="imgupload">Upload Image</label>
                       </button>
@@ -1500,7 +1501,7 @@ const Billentry = () => {
                   />
                 </div>
 
-                <div>
+                <div className="pay-method a">
                   <label>Payment Method:</label>
                   <select
                     value={paymentwith}

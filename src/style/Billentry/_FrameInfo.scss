@@ -28,6 +28,7 @@
 
                 select {
                     height: 30px !important;
+                    width: 270px !important;
                 }
 
                 img {
@@ -52,7 +53,7 @@
                     img {
                         height: 400px;
                         width: 250px;
-                        object-fit: cover
+                        object-fit: cover;
                     }
 
                     button {
@@ -61,7 +62,20 @@
                         width: fit-content;
                         background: white;
                         margin-inline: auto;
+                    }
+                }
 
+                .image-label {
+
+                    label {
+                        font-size: 11px;
+                    }
+
+                    button {
+                        background: white;
+                        padding: 0 0.5rem;
+                        width: fit-content;
+                        height: 18px !important;
                     }
                 }
             }
@@ -80,10 +94,8 @@
                 label {
                     width: fit-content;
                 }
-
             }
         }
-
     }
 
     .select-input {
@@ -101,12 +113,12 @@
     }
 }
 
-@media(max-width:650px) {
+@media (max-width: 650px) {
     .FrameInfo {
-        padding: 0 .5rem !important;
+        padding: 0 0.5rem !important;
 
         .frame-content {
-            padding: 0 .5rem;
+            padding: 0 0.5rem;
 
             .framecode,
             .item {
