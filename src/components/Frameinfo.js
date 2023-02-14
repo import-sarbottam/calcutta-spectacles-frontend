@@ -17,7 +17,7 @@ function Frameinfo() {
   const [update, setUpdate] = useState(false);
   const [framephotorender, setFramephotorender] = useState(null);
   const [updateid, setUpdateid] = useState("");
-  const [len, setLen] = useState();
+  const [len, setLen] = useState(0);
 
   async function handleDelete(id) {
     axios
@@ -85,7 +85,9 @@ function Frameinfo() {
     async function setFrame() {
       let rendertemp = [];
       let res = await axios.get("http://192.168.0.169:8000/api/getframe/");
-      setLen(res.data.length);
+      if (res) {
+        setLen(res.data.length);
+      }
       for (let i = 0; i < res.data.length; i++) {
         rendertemp.push(
           <tr key={res.data[i].frame_code}>

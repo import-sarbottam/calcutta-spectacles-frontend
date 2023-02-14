@@ -1,4 +1,5 @@
 .container {
+    background: rgb(200, 199, 199);
     border-bottom: 2px solid black;
     width: 100%;
 
@@ -11,14 +12,15 @@
             text-transform: uppercase;
             text-decoration: none;
             list-style: none;
-            font-size: 25px;
+            font-size: 14px;
         }
 
-        label {
-            cursor: pointer;
+        .text-link {
+            color: rgb(16, 3, 57);
+            text-decoration: inherit;
         }
 
-        label:hover {
+        .text-link:hover {
             border-bottom: 2px solid black;
         }
     }

@@ -135,17 +135,16 @@ button.add img {
   padding: 0;
   width: 150px;
 }
-.fimage .image-label {
-  background-color: aqua !important;
+.fimage .image-label label {
+  font-size: 11px;
 }
 .fimage .image-label button {
   background: white;
-  padding: 0.5rem;
+  padding: 0 0.5rem;
   width: -moz-fit-content;
   width: fit-content;
   border: 1px solid black;
-  height: -moz-fit-content;
-  height: fit-content;
+  height: 18px !important;
 }
 
 @media only screen and (max-width: 600px) {

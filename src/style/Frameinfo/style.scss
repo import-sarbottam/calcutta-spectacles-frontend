@@ -135,14 +135,17 @@ button.add {
     }
 
     .image-label {
-        background-color: aqua !important;
+
+        label {
+            font-size: 11px;
+        }
 
         button {
             background: white;
-            padding: 0.5rem;
+            padding: 0 0.5rem;
             width: fit-content;
             border: 1px solid black;
-            height: fit-content;
+            height: 18px !important;
         }
     }
 }

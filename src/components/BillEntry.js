@@ -4,6 +4,7 @@ import minus from "../img/minus.png";
 import Header from "./Header";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import moment from "moment";
 // import { Link } from "react-router-dom";
 
 import "../style/Billentry/main.css";
@@ -496,6 +497,7 @@ const Billentry = () => {
   return (
     <div className="Billentry">
       <Header />
+
       <section>
         <div className="BasicInfo">
           <div className="header">
@@ -555,12 +557,14 @@ const Billentry = () => {
                 <input
                   type="date"
                   value={dob}
+                  max={moment().format("YYYY-MM-DD")}
                   onChange={(e) => setDob(e.target.value)}
                 />
                 <label>Anniversary : </label>
                 <input
                   type="date"
                   value={doa}
+                  max={moment().format("YYYY-MM-DD")}
                   onChange={(e) => setDoa(e.target.value)}
                 />
               </div>
