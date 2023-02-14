@@ -101,19 +101,21 @@ function Frameinfo() {
             </td>
             <td>{res.data[i].frame_price}</td>
             <td>
-              <button
-                onClick={(e) => handleUpdate(res.data[i])}
-                className="add"
-              >
-                <img src={edit} alt="" />
-              </button>
-              &emsp;
-              <button
-                onClick={(e) => handleDelete(res.data[i].id)}
-                className="remove"
-              >
-                <img src={trash} alt="" />
-              </button>
+              <div className="button2">
+                <button
+                  onClick={(e) => handleUpdate(res.data[i])}
+                  className="add"
+                >
+                  <img src={edit} alt="" />
+                </button>
+                &emsp;
+                <button
+                  onClick={(e) => handleDelete(res.data[i].id)}
+                  className="remove"
+                >
+                  <img src={trash} alt="" />
+                </button>
+              </div>
             </td>
           </tr>
         );
@@ -240,6 +242,7 @@ function Frameinfo() {
   return (
     <div className="frameinfo">
       <Header />
+
       <div className="switch">
         <button onClick={() => setAddframe(true)} className="ef">
           Enter Frame
@@ -358,6 +361,9 @@ function Frameinfo() {
         </div>
       ) : (
         <div className="view-frame">
+          <div className="search">
+            <input placeholder="Search"></input>
+          </div>
           <table>
             <thead>
               <tr>
