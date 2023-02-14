@@ -1,0 +1,21 @@
+.container {
+  border-bottom: 2px solid black;
+  width: 100%;
+}
+.container ul {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 1rem 0;
+}
+.container ul li {
+  text-transform: uppercase;
+  text-decoration: none;
+  list-style: none;
+  font-size: 25px;
+}
+.container ul label {
+  cursor: pointer;
+}
+.container ul label:hover {
+  border-bottom: 2px solid black;
+}/*# sourceMappingURL=main.css.map */

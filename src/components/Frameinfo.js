@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import edit from "../img/edit.png";
 import trash from "../img/trash.png";
+import Header from "./Header";
 import "../style/Frameinfo/style.css";
 import axios from "axios";
 import Papa from "papaparse";
@@ -236,6 +237,7 @@ function Frameinfo() {
 
   return (
     <div className="frameinfo">
+      <Header />
       <div className="switch">
         <button onClick={() => setAddframe(true)} className="ef">
           Enter Frame

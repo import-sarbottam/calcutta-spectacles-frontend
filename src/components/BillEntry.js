@@ -1,6 +1,7 @@
 import React from "react";
 import plus from "../img/plus.png";
 import minus from "../img/minus.png";
+import Header from "./Header";
 import { useState, useEffect } from "react";
 import axios from "axios";
 // import { Link } from "react-router-dom";
@@ -494,6 +495,7 @@ const Billentry = () => {
 
   return (
     <div className="Billentry">
+      <Header />
       <section>
         <div className="BasicInfo">
           <div className="header">

@@ -15,7 +15,7 @@ body {
 }
 
 .switch {
-  padding: 1rem;
+  padding: 3rem 1rem 1rem;
   display: flex;
   justify-content: center;
   gap: 1rem;
@@ -47,6 +47,7 @@ body {
   gap: 2rem;
   text-transform: uppercase;
   align-items: flex-start;
+  width: 400px;
 }
 .enter-frame .fdetails .button-edit {
   margin-inline: auto;
@@ -127,23 +128,24 @@ button.add img {
 .fimage {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  width: 400px;
+  width: inherit;
 }
 .fimage label {
   margin: 0;
   padding: 0;
   width: 150px;
 }
-.fimage .image-label label {
-  font-size: 11px;
+.fimage .image-label {
+  background-color: aqua !important;
 }
 .fimage .image-label button {
   background: white;
-  height: 18px !important;
-  padding: 0 0.5rem;
+  padding: 0.5rem;
   width: -moz-fit-content;
   width: fit-content;
+  border: 1px solid black;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 
 @media only screen and (max-width: 600px) {
